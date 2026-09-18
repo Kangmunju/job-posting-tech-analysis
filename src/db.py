@@ -91,18 +91,21 @@ def connect():
 # =====================================================================
 
 
+# job_id 기준 UPSERT. (신규 insert 수, 갱신 update 수) 반환
 def upsert_jobs(con, df) -> tuple[int, int]:
-    """job_id 기준 UPSERT. (신규 insert 수, 갱신 update 수) 반환."""
 
     df = df.reindex(columns=JOB_COLS)
 
+    # 저장하려는 공고 ID들 뽑기
     ids = [int(x) for x in df["job_id"].tolist()]
 
     existing = set()
 
+    # 이번에 저장할 job_id 중 DB에 이미 들어 있는 ID 찾기
     if ids:
         qmarks = ",".join("?" * len(ids))
 
+        # 기존 job_id 확인
         existing = {
             row[0]
             for row in con.execute(
@@ -116,6 +119,8 @@ def upsert_jobs(con, df) -> tuple[int, int]:
         }
 
     sql = (
+        # 그냥 INSERT만 사용하면 이미 존재하는 job_id가 들어왔을 때 충돌 발생할 가능성 있음
+        # 이미 존재하는 job_id가 있는 경우 기존 행을 새로운 데이터로 교체
         f"INSERT OR REPLACE INTO jobs "
         f"({','.join(JOB_COLS)}) "
         f"VALUES ({','.join('?' * len(JOB_COLS))})"
@@ -139,3 +144,25 @@ def upsert_jobs(con, df) -> tuple[int, int]:
     inserted = len(ids) - updated
 
     return inserted, updated
+
+
+# =====================================================================
+
+# connect()에서 jobs.db에 연결
+# SCHEMA를 실행해 jobs, build_log 테이블과 인덱스를 생성함
+
+# DB 저장 컬럼 통일
+# JOB_COLS에 jobs 테이블에 저장할 15개 컬럼을 정의함
+# reindex(colums=JOB_COLS)로 DataFrame의 컬럼과 순서를 맞춤
+
+# 신규/갱신 공고를 구분하기 위해 실제 저장 전에 조회하도록 설계함
+# 새로 들어온 jobs_id를 ids에 저장
+# DB에 이미 존재하는 job_id를 조회해 existing 집합에 저장
+
+# INSERT OR REPLACE를 사용해 새로운 job_id는 추가, 기존 것은 새로운 내용으로 교체
+
+# DataFrame의 NaN을 None으로 바꿔 SQLite의 NULL로 저장함
+
+# existing에 있던 job_id 개수 = updated
+# 전체 ids 개수 - updated = inserted
+# 최종적으로 (inserted, updated)를 반환하도록 작성함
