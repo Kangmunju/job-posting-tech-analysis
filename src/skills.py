@@ -532,6 +532,10 @@ def alias_count() -> int:
     return sum(len(aliases) for aliases in SKILLS.values())
 
 
+def all_skill_names() -> list[str]:
+    return list(SKILLS.keys())
+
+
 # =====================================================================
 # 6. 자체 테스트
 # =====================================================================
@@ -632,3 +636,5 @@ if __name__ == "__main__":
 
 # R, C, Go 등 짧은 기술명은 별도 정규식/별칭 제한으로 오탐을 방지하였음
 # extract_skills()는 공고별 기술 등장 여부만 확인하도록 set으로 반환
+
+# 이후 스킬 매트릭스 생성을 위해 전체 표준 스킬명 목록을 반환하도록 all_skill_names() 추가함
