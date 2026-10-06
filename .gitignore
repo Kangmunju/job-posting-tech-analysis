@@ -7,3 +7,4 @@ data/jobs.db
 
 # Python 캐시 파일
 src/__pycache__/
+analysis/__pycache__/
