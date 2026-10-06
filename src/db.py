@@ -147,6 +147,18 @@ def upsert_jobs(con, df) -> tuple[int, int]:
 
 
 # =====================================================================
+# 6. 채용공고 조회
+# =====================================================================
+
+
+def read_jobs(con) -> pd.DataFrame:
+    return pd.read_sql_query(
+        "SELECT * FROM jobs",
+        con,
+    )
+
+
+# =====================================================================
 
 # connect()에서 jobs.db에 연결
 # SCHEMA를 실행해 jobs, build_log 테이블과 인덱스를 생성함
@@ -166,3 +178,5 @@ def upsert_jobs(con, df) -> tuple[int, int]:
 # existing에 있던 job_id 개수 = updated
 # 전체 ids 개수 - updated = inserted
 # 최종적으로 (inserted, updated)를 반환하도록 작성함
+
+# read_jobs()에서 jobs 테이블 전체를 조회해 pandas DataFrame으로 반환하도록 코드 추가
