@@ -1,0 +1,1578 @@
+skill_a,skill_b,co_count,jaccard
+Android,iOS,22,0.815
+TypeScript,React,184,0.692
+HTML,CSS,37,0.536
+Jira,Slack,36,0.529
+React,Next.js,128,0.516
+GitHub Actions,Git,69,0.483
+Spring,Spring Boot,38,0.475
+TypeScript,Next.js,112,0.475
+Jira,Confluence,25,0.463
+Java,Spring,56,0.459
+PyTorch,TensorFlow,20,0.455
+PyTorch,Deep Learning,25,0.41
+Docker,Kubernetes,102,0.395
+Kotlin,Spring,35,0.385
+dbt,Snowflake,20,0.377
+AWS,CI/CD,135,0.372
+React,Vue.js,123,0.37
+LLM,RAG,78,0.37
+Kubernetes,Terraform,73,0.348
+Python,SQL,128,0.348
+AWS,Kubernetes,124,0.341
+CI/CD,Git,87,0.337
+JavaScript,TypeScript,77,0.335
+TypeScript,Vue.js,107,0.334
+Confluence,Slack,19,0.328
+Kubernetes,CI/CD,97,0.327
+GCP,Azure,42,0.326
+AWS,GCP,99,0.321
+Python,AWS,149,0.32
+Spark,Airflow,36,0.319
+MySQL,PostgreSQL,42,0.316
+AWS,Docker,110,0.311
+Java,Kotlin,35,0.31
+JavaScript,CSS,38,0.304
+Docker,CI/CD,86,0.303
+Spark,Kafka,41,0.301
+JavaScript,React,77,0.298
+Airflow,dbt,27,0.297
+Kubernetes,Linux,61,0.284
+Python,LLM,114,0.28
+TensorFlow,Deep Learning,14,0.28
+Spark,Hadoop,20,0.278
+PostgreSQL,Redis,36,0.273
+CSS,React,64,0.264
+Terraform,CI/CD,61,0.263
+Kafka,Redis,36,0.259
+AWS,Git,89,0.254
+TypeScript,CSS,56,0.252
+JavaScript,HTML,27,0.25
+Java,Spring Boot,28,0.25
+Machine Learning,Deep Learning,21,0.25
+Deep Learning,Computer Vision,13,0.25
+Python,Docker,97,0.249
+GitHub Actions,CI/CD,54,0.249
+Docker,Linux,50,0.248
+REST API,React,69,0.245
+AWS,Terraform,76,0.244
+Kafka,Kubernetes,58,0.242
+Spark,Flink,18,0.24
+Vue.js,Next.js,68,0.239
+Docker,Git,60,0.239
+SQL,Airflow,49,0.238
+Kafka,AWS,77,0.237
+Python,Kubernetes,97,0.234
+JavaScript,Next.js,44,0.233
+REST API,Vue.js,62,0.233
+Terraform,Linux,33,0.232
+PostgreSQL,Docker,50,0.23
+MySQL,REST API,35,0.229
+TypeScript,CI/CD,76,0.226
+Django,FastAPI,14,0.226
+Node.js,NestJS,19,0.226
+TypeScript,Git,65,0.225
+React,React Native,53,0.222
+CI/CD,Vue.js,76,0.222
+LLM,AWS,90,0.221
+REST API,Next.js,45,0.221
+Kafka,Airflow,33,0.219
+Java,Kafka,37,0.219
+TypeScript,REST API,58,0.219
+MySQL,Redis,26,0.218
+CI/CD,React,79,0.218
+Docker,REST API,50,0.217
+Airflow,BigQuery,22,0.216
+Redis,Spring,26,0.215
+BigQuery,Snowflake,14,0.215
+Kubernetes,Git,59,0.214
+Redis,Elasticsearch,18,0.214
+CSS,Next.js,36,0.214
+dbt,BigQuery,15,0.211
+TypeScript,React Native,46,0.211
+Redis,NestJS,18,0.207
+PostgreSQL,REST API,36,0.206
+AWS,Vue.js,87,0.205
+Kotlin,Spring Boot,15,0.205
+PyTorch,Computer Vision,11,0.204
+Java,AWS,67,0.204
+GCP,Docker,47,0.203
+Spring,REST API,32,0.203
+MySQL,Node.js,24,0.202
+PostgreSQL,AWS,66,0.201
+AWS,Spring,62,0.199
+SQL,dbt,36,0.199
+PostgreSQL,FastAPI,25,0.197
+CI/CD,Linux,47,0.197
+MySQL,Docker,40,0.196
+Redis,FastAPI,20,0.196
+JavaScript,Vue.js,51,0.195
+Kafka,Spring,30,0.195
+AWS,Azure,58,0.195
+LLM,React,72,0.195
+JavaScript,REST API,34,0.195
+Terraform,Git,38,0.194
+AWS,React,87,0.194
+Kotlin,Redis,19,0.194
+TypeScript,LLM,67,0.194
+React,Git,62,0.194
+Android,React Native,13,0.194
+Terraform,GitHub Actions,26,0.194
+Spark,dbt,18,0.194
+Git,Slack,31,0.19
+TypeScript,AWS,81,0.19
+Python,GCP,68,0.188
+Kafka,Docker,43,0.186
+SQL,BigQuery,35,0.186
+MySQL,Spring,24,0.185
+Python,RAG,63,0.184
+SQL,Tableau,33,0.184
+Redis,REST API,28,0.183
+SQL,AWS,73,0.182
+Java,Kubernetes,45,0.182
+Redis,Docker,36,0.179
+AWS,REST API,62,0.179
+GCP,Kubernetes,46,0.179
+Java,REST API,32,0.178
+GCP,CI/CD,47,0.177
+Docker,Terraform,39,0.177
+Java,Docker,40,0.175
+AWS,GitHub Actions,54,0.174
+Git,Jira,29,0.174
+MySQL,AWS,55,0.174
+LLM,Vue.js,62,0.174
+Kotlin,Elasticsearch,12,0.174
+Java,MySQL,26,0.173
+PostgreSQL,Kubernetes,43,0.173
+PostgreSQL,Spring,26,0.172
+React Native,Flutter,11,0.172
+Redis,Node.js,20,0.172
+BigQuery,GCP,23,0.172
+Docker,Spring,36,0.171
+Tableau,A/B Test,12,0.171
+PostgreSQL,MongoDB,19,0.171
+SQL,Spark,36,0.17
+TensorFlow,Machine Learning,12,0.169
+PostgreSQL,Node.js,24,0.169
+CI/CD,Next.js,49,0.169
+Python,Airflow,57,0.168
+Jenkins,Git,26,0.168
+PostgreSQL,Next.js,34,0.168
+Elasticsearch,Spring,16,0.168
+Python,CI/CD,75,0.168
+Docker,GitHub Actions,34,0.167
+MySQL,NestJS,16,0.167
+SQL,A/B Test,32,0.167
+SQL,Snowflake,30,0.167
+Kafka,MySQL,26,0.167
+PyTorch,Machine Learning,15,0.167
+Redis,AWS,52,0.166
+Vue.js,Git,51,0.166
+Next.js,React Native,27,0.166
+Redis,Kubernetes,37,0.165
+PostgreSQL,NestJS,19,0.164
+AWS,Next.js,61,0.164
+Python,Java,59,0.164
+Python,PostgreSQL,59,0.164
+Kafka,Flink,18,0.164
+JavaScript,React Native,21,0.164
+Docker,FastAPI,31,0.163
+MySQL,MongoDB,15,0.163
+Next.js,Git,39,0.162
+BigQuery,A/B Test,13,0.162
+REST API,CSS,25,0.162
+Kotlin,Jira,14,0.161
+Kubernetes,GitHub Actions,36,0.16
+MySQL,Spring Boot,16,0.16
+Spark,BigQuery,16,0.158
+HTML,React,38,0.158
+PostgreSQL,Git,33,0.158
+Airflow,Snowflake,15,0.156
+LLM,GCP,42,0.155
+Airflow,AWS,50,0.154
+TypeScript,Node.js,37,0.154
+GCP,Terraform,27,0.154
+PostgreSQL,Vue.js,42,0.154
+iOS,React Native,10,0.154
+Jenkins,CI/CD,32,0.154
+CI/CD,REST API,42,0.154
+CSS,React Native,16,0.154
+LLM,Next.js,45,0.153
+Java,CI/CD,40,0.153
+Python,Vue.js,71,0.153
+TypeScript,PostgreSQL,41,0.152
+Kotlin,REST API,21,0.151
+Jenkins,GitHub Actions,14,0.151
+Docker,Jenkins,27,0.151
+SQL,Kafka,37,0.15
+Spark,AWS,48,0.15
+Docker,Vue.js,50,0.15
+Airflow,Flink,13,0.149
+MongoDB,Redis,13,0.149
+Kotlin,Kafka,20,0.149
+Kubernetes,Spring,35,0.149
+MySQL,CI/CD,36,0.149
+Java,Vue.js,41,0.149
+Jenkins,Spring,15,0.149
+Spring,FastAPI,17,0.149
+Kafka,Elasticsearch,18,0.149
+Python,Machine Learning,49,0.148
+Java,Elasticsearch,17,0.147
+PostgreSQL,React,43,0.146
+Node.js,React,39,0.146
+FastAPI,REST API,21,0.146
+Python,Kafka,54,0.146
+Kotlin,MongoDB,10,0.145
+TypeScript,NestJS,31,0.144
+Airflow,Kubernetes,34,0.144
+Java,PostgreSQL,25,0.144
+Spark,Kubernetes,33,0.143
+Docker,React,51,0.143
+Python,Linux,50,0.142
+SQL,LLM,47,0.142
+Java,Redis,21,0.142
+NestJS,React Native,11,0.141
+Linux,Git,28,0.141
+Elasticsearch,Spring Boot,9,0.141
+Redis,Git,26,0.14
+Redis,GitHub Actions,17,0.14
+Kubernetes,FastAPI,30,0.14
+Node.js,REST API,22,0.14
+MySQL,Kubernetes,33,0.14
+Spring,Vue.js,36,0.14
+Jenkins,Linux,15,0.14
+Kafka,PostgreSQL,25,0.139
+Spring,Git,27,0.139
+TensorFlow,NLP,5,0.139
+Kubernetes,REST API,37,0.139
+LLM,Docker,45,0.138
+TypeScript,Docker,46,0.138
+JavaScript,Git,29,0.138
+Kotlin,MySQL,15,0.138
+Python,FastAPI,45,0.138
+CI/CD,Spring,34,0.138
+TypeScript,GitHub Actions,34,0.138
+Kafka,CI/CD,37,0.137
+PostgreSQL,Linux,22,0.137
+Python,Spark,47,0.137
+NestJS,Flutter,7,0.137
+TypeScript,HTML,30,0.136
+Redis,Spring Boot,13,0.135
+Kafka,REST API,26,0.135
+MySQL,Linux,19,0.135
+MongoDB,FastAPI,10,0.135
+SQL,GCP,34,0.134
+Redis,CI/CD,32,0.134
+AWS,Node.js,43,0.134
+Snowflake,Tableau,8,0.133
+MySQL,Next.js,25,0.133
+Terraform,Jenkins,15,0.132
+Kafka,Spring Boot,17,0.132
+Airflow,GCP,22,0.132
+Redis,Vue.js,33,0.131
+Kotlin,PostgreSQL,17,0.131
+GitHub Actions,Jira,14,0.13
+Jenkins,Spring Boot,9,0.13
+Docker,Node.js,27,0.13
+Azure,Docker,26,0.129
+JavaScript,CI/CD,34,0.129
+Python,Terraform,47,0.129
+MySQL,Git,25,0.129
+TypeScript,Redis,32,0.129
+CSS,Redux,11,0.129
+LLM,Kubernetes,45,0.129
+AWS,Linux,43,0.128
+Python,Azure,43,0.128
+LLM,FastAPI,29,0.128
+Kubernetes,Vue.js,46,0.127
+CSS,Vue.js,32,0.127
+SQL,Machine Learning,27,0.127
+Node.js,Next.js,23,0.127
+Python,Git,52,0.127
+Spring Boot,REST API,17,0.126
+MongoDB,REST API,16,0.126
+LLM,CI/CD,45,0.125
+Docker,Next.js,34,0.125
+JavaScript,Node.js,18,0.124
+Azure,CI/CD,29,0.124
+Kafka,dbt,16,0.123
+Node.js,Vue.js,31,0.123
+NestJS,Next.js,19,0.123
+LLM,PostgreSQL,33,0.123
+Spark,GCP,20,0.123
+CSS,Git,23,0.123
+MySQL,Vue.js,32,0.123
+REST API,Git,28,0.123
+Kotlin,FastAPI,11,0.122
+MySQL,FastAPI,14,0.122
+GitHub Actions,Slack,13,0.121
+Kotlin,Kubernetes,26,0.121
+Vue.js,React Native,29,0.121
+React,Redux,29,0.121
+Kafka,FastAPI,17,0.12
+RAG,AWS,41,0.12
+RAG,FastAPI,15,0.12
+PostgreSQL,GitHub Actions,18,0.12
+Java,Git,26,0.12
+Kubernetes,Jira,26,0.119
+Kafka,GCP,23,0.119
+Kafka,Terraform,21,0.119
+GCP,Git,27,0.119
+PostgreSQL,CI/CD,32,0.119
+Spark,Snowflake,11,0.118
+MySQL,React,33,0.117
+JavaScript,AWS,41,0.117
+GitHub Actions,NestJS,11,0.117
+Python,PyTorch,38,0.117
+Vue.js,Jira,28,0.116
+TypeScript,Redux,25,0.116
+SQL,Vue.js,41,0.116
+Flink,BigQuery,7,0.115
+Java,Linux,19,0.115
+SQL,RAG,27,0.114
+GitHub Actions,Next.js,21,0.114
+Elasticsearch,NestJS,7,0.113
+Kotlin,AWS,35,0.113
+LLM,Git,35,0.113
+MySQL,Elasticsearch,11,0.112
+TypeScript,MySQL,29,0.112
+Airflow,Terraform,17,0.112
+Spring,Slack,13,0.112
+Kubernetes,Jenkins,23,0.111
+Spring,Jira,13,0.11
+Hadoop,Azure,8,0.11
+Spark,Terraform,16,0.11
+SQL,Docker,34,0.109
+GraphQL,HTML,6,0.109
+Spring Boot,Git,18,0.109
+HTML,React Native,9,0.108
+GitHub Actions,React,30,0.108
+AWS,Jira,34,0.108
+SQL,Java,27,0.108
+Flink,dbt,6,0.107
+CI/CD,Node.js,26,0.107
+MySQL,GitHub Actions,14,0.107
+Kafka,Vue.js,31,0.107
+Python,Spring,38,0.106
+FastAPI,Slack,10,0.106
+MongoDB,Docker,19,0.106
+Node.js,Git,20,0.105
+Machine Learning,Computer Vision,8,0.105
+GitHub Actions,Confluence,9,0.105
+PostgreSQL,Terraform,18,0.105
+Azure,Kubernetes,24,0.105
+NestJS,Git,17,0.105
+Python,React,53,0.105
+Kubernetes,Slack,23,0.105
+MongoDB,Jira,8,0.105
+Java,GCP,20,0.105
+Kotlin,Vue.js,25,0.105
+NLP,Computer Vision,4,0.105
+React,Android,25,0.104
+AWS,FastAPI,33,0.104
+FastAPI,Jira,10,0.104
+Java,Jenkins,13,0.104
+SQL,PostgreSQL,26,0.104
+GCP,GitHub Actions,17,0.104
+Hadoop,Kafka,12,0.104
+Redis,Jenkins,10,0.103
+MongoDB,Elasticsearch,6,0.103
+Python,MySQL,37,0.103
+Kotlin,Jenkins,8,0.103
+Airflow,Docker,23,0.103
+C++,Linux,10,0.102
+PyTorch,RAG,12,0.102
+RAG,PostgreSQL,17,0.101
+Java,MongoDB,12,0.101
+Kafka,BigQuery,14,0.101
+FastAPI,Node.js,11,0.101
+MongoDB,Spring,10,0.101
+MongoDB,Node.js,9,0.101
+Hadoop,Airflow,9,0.1
+NestJS,React,25,0.1
+RAG,Airflow,15,0.1
+Kotlin,Slack,9,0.1
+Machine Learning,LLM,24,0.1
+CI/CD,Slack,23,0.1
+Redis,React,28,0.1
+RAG,Docker,23,0.099
+Next.js,Redux,15,0.099
+Vue.js,Slack,24,0.099
+Node.js,GraphQL,8,0.099
+FastAPI,NestJS,8,0.099
+Java,Node.js,15,0.099
+PostgreSQL,GCP,19,0.099
+Next.js,Slack,17,0.099
+CI/CD,Jira,23,0.099
+Azure,Linux,13,0.099
+MongoDB,Kubernetes,20,0.099
+Elasticsearch,REST API,13,0.098
+Elasticsearch,Kubernetes,20,0.098
+LLM,Node.js,24,0.098
+Kafka,Slack,14,0.098
+FastAPI,Vue.js,24,0.098
+Kotlin,Git,17,0.098
+Git,Confluence,15,0.097
+Spring,React,28,0.097
+Airflow,Tableau,10,0.097
+Spring,Next.js,19,0.097
+HTML,Redux,6,0.097
+Python,Deep Learning,32,0.097
+Airflow,A/B Test,11,0.096
+GCP,Linux,17,0.096
+GitHub Actions,Vue.js,25,0.096
+Python,BigQuery,32,0.096
+JavaScript,Redux,11,0.096
+Snowflake,A/B Test,7,0.096
+Redis,Next.js,18,0.096
+Machine Learning,RAG,13,0.096
+TypeScript,Slack,23,0.096
+TypeScript,Jira,23,0.095
+SQL,REST API,25,0.095
+BigQuery,Tableau,7,0.095
+Java,React,29,0.094
+LLM,REST API,27,0.094
+RAG,GCP,17,0.094
+FastAPI,React,25,0.094
+Python,REST API,37,0.094
+NLP,LLM,19,0.094
+PostgreSQL,Spring Boot,12,0.094
+PyTorch,LLM,21,0.094
+React,Jira,25,0.094
+REST API,HTML,13,0.094
+Kubernetes,React,37,0.094
+MySQL,GCP,16,0.094
+Java,Slack,13,0.094
+HTML,Next.js,15,0.093
+JavaScript,GraphQL,10,0.093
+CSS,Android,8,0.093
+Machine Learning,NLP,7,0.093
+Java,Jira,13,0.093
+LLM,Redis,23,0.093
+Spark,Azure,11,0.092
+Kafka,Git,21,0.092
+MySQL,Terraform,14,0.092
+Kafka,Jenkins,12,0.091
+Redis,Slack,10,0.091
+Python,TypeScript,44,0.091
+RAG,Elasticsearch,10,0.091
+Kotlin,Docker,18,0.091
+Snowflake,GCP,12,0.091
+AWS,Slack,29,0.091
+AWS,Spring Boot,28,0.091
+Docker,Slack,18,0.09
+React,Slack,24,0.09
+Python,Redis,32,0.09
+Android,Flutter,4,0.089
+Redis,Jira,10,0.089
+PostgreSQL,Azure,13,0.089
+Docker,Jira,18,0.089
+Docker,Spring Boot,17,0.089
+Elasticsearch,FastAPI,7,0.089
+GitHub Actions,Spring,12,0.089
+GitHub Actions,React Native,10,0.089
+Java,Spark,14,0.089
+Python,A/B Test,30,0.089
+Git,React Native,16,0.089
+Kotlin,Confluence,6,0.088
+Java,Azure,13,0.088
+Kubernetes,Node.js,21,0.088
+GCP,Jenkins,12,0.088
+Kafka,Node.js,14,0.088
+NestJS,REST API,12,0.088
+SQL,Kubernetes,30,0.088
+GCP,REST API,18,0.088
+JavaScript,Jira,12,0.088
+GitHub Actions,CSS,11,0.088
+GraphQL,React Native,6,0.087
+LLM,Azure,21,0.087
+MongoDB,GitHub Actions,8,0.087
+Java,RAG,15,0.087
+Flink,Terraform,9,0.087
+Python,Node.js,31,0.087
+Java,LLM,24,0.086
+TypeScript,Kubernetes,32,0.086
+FastAPI,Next.js,15,0.086
+PyTorch,NLP,5,0.086
+Spring,Django,8,0.086
+Linux,Node.js,12,0.086
+JavaScript,GitHub Actions,13,0.086
+dbt,GCP,12,0.086
+PostgreSQL,Jira,12,0.086
+REST API,Jira,13,0.086
+Azure,Terraform,12,0.086
+REST API,React Native,13,0.086
+GraphQL,CSS,7,0.085
+Docker,Django,15,0.085
+GitHub Actions,Linux,12,0.085
+CI/CD,CSS,21,0.085
+Python,dbt,28,0.085
+Node.js,Flutter,7,0.085
+LLM,Kafka,24,0.085
+LLM,Airflow,22,0.085
+LLM,Spring,22,0.085
+RAG,Kafka,15,0.084
+Deep Learning,LLM,19,0.084
+Kubernetes,Spring Boot,18,0.084
+GitHub Actions,REST API,14,0.084
+AWS,Jenkins,26,0.084
+Jenkins,FastAPI,7,0.083
+GCP,Vue.js,25,0.083
+JavaScript,PostgreSQL,15,0.083
+Terraform,Confluence,9,0.083
+Python,Snowflake,27,0.083
+Kotlin,GitHub Actions,9,0.083
+React,iOS,20,0.083
+React,Flutter,20,0.083
+TypeScript,Android,18,0.082
+JavaScript,MySQL,13,0.082
+Next.js,Flutter,12,0.082
+JavaScript,Docker,20,0.082
+Kafka,Jira,12,0.082
+HTML,Jira,7,0.082
+HTML,Android,5,0.082
+Kotlin,CI/CD,19,0.082
+PostgreSQL,Elasticsearch,10,0.082
+NLP,RAG,8,0.081
+HTML,Vue.js,19,0.081
+Python,Jira,28,0.081
+SQL,MySQL,19,0.081
+Elasticsearch,Docker,15,0.081
+AWS,NestJS,25,0.081
+MongoDB,Git,13,0.081
+CSS,Jira,9,0.081
+REST API,GraphQL,10,0.081
+RAG,Azure,11,0.081
+Redux,Slack,6,0.081
+CI/CD,FastAPI,19,0.081
+MongoDB,NestJS,5,0.081
+CI/CD,Spring Boot,18,0.08
+Next.js,Jira,14,0.08
+Kafka,GitHub Actions,13,0.08
+GCP,React,26,0.08
+MongoDB,Slack,6,0.079
+GCP,Node.js,13,0.079
+GitHub Actions,Spring Boot,8,0.079
+BigQuery,AWS,25,0.079
+TypeScript,Flutter,17,0.079
+Java,Airflow,13,0.079
+GCP,FastAPI,12,0.079
+Machine Learning,Hadoop,6,0.078
+RAG,Spring,12,0.078
+Kafka,Snowflake,10,0.078
+Kafka,Azure,12,0.078
+JavaScript,GCP,15,0.078
+MongoDB,Jenkins,5,0.078
+GCP,Next.js,18,0.078
+Java,FastAPI,11,0.077
+TypeScript,GCP,23,0.077
+RAG,Kubernetes,20,0.077
+Spark,Docker,17,0.077
+RAG,Node.js,11,0.077
+Elasticsearch,Slack,6,0.077
+Python,Slack,26,0.076
+Python,Kotlin,26,0.076
+Elasticsearch,Jenkins,5,0.076
+Spring Boot,Vue.js,18,0.076
+LLM,Jira,18,0.076
+RAG,Spring Boot,9,0.076
+LLM,Spark,19,0.075
+Elasticsearch,Jira,6,0.075
+MySQL,Jenkins,8,0.075
+TensorFlow,Computer Vision,3,0.075
+Hadoop,Flink,3,0.075
+Vue.js,Android,17,0.075
+Docker,NestJS,14,0.074
+TypeScript,Spring,20,0.074
+GCP,Spring,13,0.074
+RAG,Vue.js,21,0.074
+Azure,Git,14,0.074
+AWS,CSS,25,0.074
+TypeScript,iOS,16,0.074
+NestJS,GraphQL,4,0.074
+dbt,AWS,23,0.073
+iOS,Flutter,3,0.073
+CSS,Slack,8,0.073
+Airflow,PostgreSQL,12,0.073
+Linux,Spring,11,0.073
+Machine Learning,Spark,9,0.073
+JavaScript,Slack,10,0.073
+Java,TypeScript,21,0.072
+Airflow,Confluence,7,0.072
+Jenkins,Slack,6,0.072
+Elasticsearch,AWS,22,0.072
+MongoDB,AWS,22,0.072
+Next.js,Android,11,0.072
+CSS,iOS,6,0.072
+Node.js,React Native,8,0.071
+Java,JavaScript,13,0.071
+dbt,Tableau,5,0.071
+HTML,Git,12,0.071
+HTML,Slack,6,0.071
+Redis,GraphQL,6,0.071
+Django,Node.js,6,0.071
+Jenkins,Jira,6,0.071
+CI/CD,React Native,17,0.071
+Kafka,React,23,0.071
+Python,Next.js,30,0.07
+HTML,iOS,4,0.07
+PostgreSQL,React Native,10,0.07
+C++,Computer Vision,3,0.07
+BigQuery,Terraform,9,0.07
+RAG,Git,15,0.07
+Hadoop,dbt,4,0.07
+Kafka,MongoDB,9,0.07
+Airflow,Azure,9,0.07
+Kotlin,Next.js,12,0.069
+TensorFlow,RAG,7,0.069
+SQL,React,27,0.069
+Java,C++,8,0.069
+RAG,React,21,0.069
+Kubernetes,Confluence,14,0.069
+GitHub Actions,HTML,7,0.069
+Machine Learning,A/B Test,7,0.069
+TypeScript,GraphQL,15,0.069
+SQL,Azure,15,0.068
+LLM,Elasticsearch,15,0.068
+RAG,Spark,10,0.068
+LLM,Slack,16,0.068
+FastAPI,Confluence,5,0.068
+Deep Learning,NLP,4,0.068
+NestJS,Vue.js,16,0.068
+Java,Next.js,15,0.068
+Redux,Git,11,0.068
+MySQL,Slack,8,0.067
+Java,Terraform,12,0.067
+Machine Learning,Snowflake,6,0.067
+Flink,Confluence,3,0.067
+Spring,Node.js,9,0.066
+Airflow,Slack,8,0.066
+Deep Learning,RAG,8,0.066
+LLM,Spring Boot,15,0.066
+Redis,Azure,8,0.066
+LLM,Terraform,18,0.065
+TypeScript,FastAPI,16,0.065
+MongoDB,Vue.js,15,0.065
+GraphQL,React,16,0.065
+SQL,FastAPI,14,0.065
+dbt,Terraform,8,0.065
+SQL,CI/CD,23,0.065
+MongoDB,Linux,7,0.065
+Azure,Jenkins,6,0.065
+FastAPI,Git,12,0.065
+LLM,MySQL,17,0.065
+Kubernetes,Next.js,20,0.065
+Kubernetes,Django,13,0.064
+Jenkins,REST API,9,0.064
+RAG,REST API,12,0.064
+TypeScript,Spring Boot,15,0.064
+PostgreSQL,Slack,9,0.064
+Elasticsearch,Linux,7,0.064
+TypeScript,RAG,18,0.064
+dbt,Azure,6,0.064
+Java,GitHub Actions,10,0.063
+JavaScript,Flutter,7,0.063
+LLM,Linux,17,0.063
+Django,REST API,8,0.063
+Node.js,CSS,8,0.063
+TypeScript,Azure,16,0.063
+Python,GitHub Actions,23,0.063
+Redis,Linux,9,0.062
+PostgreSQL,Jenkins,8,0.062
+Python,Django,20,0.062
+Vue.js,Flutter,14,0.062
+LLM,NestJS,14,0.062
+CI/CD,NestJS,14,0.062
+Linux,FastAPI,8,0.062
+GitHub Actions,Node.js,8,0.062
+CI/CD,HTML,14,0.062
+Spark,CI/CD,16,0.062
+Kafka,Linux,11,0.061
+Java,Flink,7,0.061
+Machine Learning,Airflow,8,0.061
+Machine Learning,Azure,7,0.061
+Java,HTML,8,0.061
+Python,MongoDB,20,0.061
+JavaScript,Azure,9,0.061
+JavaScript,Spring,10,0.061
+Kotlin,Terraform,8,0.061
+PostgreSQL,Django,7,0.061
+Vue.js,Redux,14,0.061
+RAG,Redis,9,0.061
+Azure,React,17,0.06
+GraphQL,Next.js,9,0.06
+Next.js,iOS,9,0.06
+Spring Boot,Next.js,10,0.06
+CI/CD,Redux,13,0.06
+REST API,Redux,8,0.06
+Redis,Terraform,9,0.06
+MongoDB,GCP,8,0.06
+SQL,Redis,14,0.06
+Terraform,Node.js,9,0.06
+PyTorch,Docker,12,0.06
+Terraform,Jira,8,0.059
+Machine Learning,BigQuery,6,0.059
+Hadoop,Snowflake,3,0.059
+MySQL,CSS,8,0.059
+MongoDB,CI/CD,13,0.059
+SQL,Hadoop,11,0.059
+Docker,CSS,13,0.059
+Flink,Kubernetes,12,0.059
+RAG,CI/CD,16,0.059
+REST API,Slack,9,0.058
+SQL,Spring,14,0.058
+Vue.js,iOS,13,0.058
+Spring,CSS,8,0.058
+Redux,Confluence,3,0.058
+Git,Flutter,9,0.058
+Azure,Node.js,7,0.058
+RAG,dbt,7,0.058
+Jenkins,Vue.js,14,0.058
+GitHub Actions,iOS,5,0.058
+GitHub Actions,Flutter,5,0.058
+Redis,Django,5,0.057
+Python,Tableau,19,0.057
+Spring Boot,Jira,5,0.057
+Spring Boot,FastAPI,5,0.057
+Snowflake,Azure,5,0.057
+Kafka,Next.js,13,0.057
+PostgreSQL,CSS,9,0.057
+Hadoop,Tableau,3,0.057
+Java,CSS,9,0.057
+Jenkins,NestJS,4,0.057
+JavaScript,LLM,16,0.057
+Python,TensorFlow,18,0.056
+Hadoop,GCP,7,0.056
+Spring,NestJS,6,0.056
+RAG,BigQuery,7,0.056
+Terraform,Spring,9,0.056
+Spring Boot,NestJS,4,0.056
+MongoDB,Confluence,3,0.056
+SQL,Node.js,13,0.056
+Node.js,Android,5,0.056
+Python,Hadoop,18,0.056
+Kafka,Confluence,7,0.056
+GitHub Actions,Android,5,0.055
+Machine Learning,GCP,9,0.055
+Kotlin,React,15,0.055
+SQL,Jira,12,0.055
+C++,Terraform,6,0.055
+Kotlin,LLM,13,0.055
+Redis,CSS,7,0.054
+LLM,GitHub Actions,14,0.054
+MySQL,Flutter,5,0.054
+Node.js,Slack,6,0.054
+Spring,HTML,6,0.054
+MySQL,Azure,7,0.054
+MySQL,GraphQL,5,0.054
+Linux,Jira,7,0.054
+Flink,MySQL,5,0.054
+Elasticsearch,CI/CD,12,0.054
+Linux,REST API,10,0.054
+Spring Boot,React,14,0.053
+Azure,Spring,7,0.053
+Elasticsearch,Node.js,5,0.053
+dbt,PostgreSQL,7,0.053
+AWS,GraphQL,16,0.053
+TensorFlow,Airflow,5,0.053
+A/B Test,React Native,5,0.053
+Azure,Next.js,10,0.053
+TypeScript,Kafka,16,0.053
+Jira,Android,4,0.053
+Linux,Vue.js,15,0.053
+TypeScript,Kotlin,13,0.053
+Java,dbt,7,0.053
+Vue.js,Confluence,12,0.052
+PostgreSQL,GraphQL,6,0.052
+TensorFlow,LLM,11,0.052
+Redis,React Native,6,0.052
+Terraform,Slack,7,0.052
+Kafka,NestJS,7,0.052
+Vue.js,A/B Test,13,0.052
+LLM,CSS,13,0.051
+Azure,Django,4,0.051
+CI/CD,Confluence,11,0.051
+Redux,Jira,4,0.051
+Slack,React Native,5,0.051
+GCP,Jira,8,0.051
+Snowflake,AWS,16,0.051
+LLM,BigQuery,12,0.051
+AWS,React Native,17,0.051
+SQL,Terraform,13,0.051
+PyTorch,Linux,6,0.05
+Spark,Tableau,5,0.05
+Jenkins,Node.js,5,0.05
+Jira,React Native,5,0.05
+BigQuery,Azure,5,0.05
+Spring Boot,Django,3,0.05
+AWS,HTML,16,0.05
+C++,Azure,4,0.05
+Git,Android,8,0.049
+Python,C++,16,0.049
+Azure,Vue.js,13,0.049
+PyTorch,Hadoop,3,0.049
+SQL,TypeScript,18,0.049
+Airflow,CI/CD,13,0.049
+C++,Kubernetes,10,0.049
+Deep Learning,Hadoop,3,0.049
+Kafka,GraphQL,6,0.049
+Spring Boot,Node.js,5,0.049
+AWS,Confluence,15,0.049
+MySQL,Jira,6,0.049
+Hadoop,GraphQL,2,0.049
+Spark,Git,10,0.049
+Python,Computer Vision,16,0.049
+Airflow,Jira,6,0.048
+NLP,GCP,6,0.048
+dbt,A/B Test,4,0.048
+GraphQL,Flutter,2,0.048
+C++,Vue.js,11,0.048
+NestJS,Redux,3,0.048
+Django,React,12,0.048
+Redis,GCP,8,0.047
+Spark,Linux,7,0.047
+CI/CD,GraphQL,10,0.047
+Java,Snowflake,6,0.047
+RAG,Next.js,10,0.047
+Python,Jenkins,16,0.047
+NLP,A/B Test,3,0.047
+REST API,Flutter,6,0.047
+MongoDB,React,12,0.047
+Django,CSS,4,0.047
+C++,Deep Learning,3,0.047
+LLM,Django,10,0.047
+Node.js,iOS,4,0.047
+SQL,Next.js,14,0.047
+Flink,GCP,6,0.047
+GitHub Actions,GraphQL,4,0.046
+Python,NLP,15,0.046
+TensorFlow,A/B Test,3,0.046
+Azure,FastAPI,5,0.046
+Spring Boot,Slack,4,0.046
+GCP,A/B Test,7,0.046
+Airflow,Vue.js,13,0.046
+Deep Learning,Spark,5,0.046
+SQL,Confluence,9,0.046
+LLM,Confluence,10,0.046
+Redis,Flutter,4,0.046
+Flink,AWS,14,0.046
+MongoDB,Azure,4,0.046
+PyTorch,Spark,5,0.046
+Python,Elasticsearch,15,0.045
+Python,Confluence,15,0.045
+dbt,MySQL,5,0.045
+Kotlin,iOS,3,0.045
+REST API,Android,6,0.045
+Airflow,Linux,7,0.045
+RAG,MySQL,7,0.045
+MongoDB,HTML,3,0.045
+Elasticsearch,Azure,4,0.045
+Java,Machine Learning,7,0.045
+C++,Flutter,2,0.045
+LLM,Redux,10,0.045
+Kotlin,Flink,3,0.045
+Next.js,A/B Test,8,0.045
+GCP,Slack,7,0.045
+Next.js,Confluence,7,0.045
+LLM,React Native,11,0.045
+Django,Git,7,0.044
+Python,Spring Boot,15,0.044
+Redis,Confluence,4,0.044
+BigQuery,Kubernetes,10,0.044
+GraphQL,Git,7,0.044
+Computer Vision,Docker,8,0.044
+JavaScript,Redis,7,0.044
+GraphQL,Vue.js,10,0.044
+C++,Kotlin,3,0.043
+GraphQL,Slack,3,0.043
+Docker,Confluence,8,0.043
+React,Confluence,11,0.043
+MongoDB,Next.js,7,0.043
+Java,Hadoop,5,0.043
+Spark,PostgreSQL,7,0.043
+Java,BigQuery,6,0.043
+MySQL,BigQuery,5,0.043
+GitHub Actions,Redux,4,0.043
+PyTorch,FastAPI,4,0.043
+Flink,Slack,3,0.043
+LLM,dbt,10,0.043
+Django,Confluence,2,0.043
+JavaScript,Android,5,0.042
+Computer Vision,LLM,9,0.042
+MySQL,Django,4,0.042
+Azure,REST API,7,0.042
+LLM,A/B Test,10,0.042
+LLM,Flutter,9,0.042
+Django,Slack,3,0.042
+Elasticsearch,Vue.js,10,0.042
+Spring,GraphQL,4,0.042
+Elasticsearch,Terraform,5,0.042
+C++,Slack,3,0.042
+GraphQL,Jira,3,0.042
+Kotlin,Android,3,0.042
+Linux,Spring Boot,5,0.042
+Snowflake,Terraform,5,0.042
+Java,Django,5,0.042
+Airflow,Git,9,0.042
+Computer Vision,FastAPI,3,0.042
+AWS,Django,13,0.042
+SQL,Kotlin,9,0.042
+SQL,Flink,8,0.042
+TypeScript,Terraform,12,0.041
+Airflow,MySQL,6,0.041
+Terraform,Vue.js,12,0.041
+JavaScript,Kafka,8,0.041
+Kubernetes,NestJS,9,0.041
+MySQL,Confluence,4,0.041
+Elasticsearch,GitHub Actions,4,0.041
+SQL,Slack,9,0.041
+CI/CD,Android,9,0.041
+Redux,Flutter,2,0.041
+Django,Jira,3,0.041
+Machine Learning,AWS,14,0.041
+SQL,MongoDB,8,0.04
+Kafka,Django,5,0.04
+Azure,GitHub Actions,5,0.04
+Spring,Confluence,4,0.04
+Django,Redux,2,0.04
+dbt,Kubernetes,9,0.04
+MySQL,React Native,5,0.04
+Airflow,FastAPI,5,0.04
+Kotlin,Linux,5,0.039
+REST API,iOS,5,0.039
+GCP,Django,5,0.039
+Hadoop,AWS,12,0.039
+NLP,Azure,3,0.039
+Deep Learning,Docker,8,0.039
+MongoDB,GraphQL,2,0.039
+BigQuery,Docker,8,0.039
+JavaScript,NestJS,5,0.039
+Flink,Linux,4,0.039
+SQL,Spring Boot,8,0.038
+TypeScript,Jenkins,9,0.038
+C++,Docker,7,0.038
+SQL,PyTorch,8,0.038
+JavaScript,Spring Boot,5,0.038
+Python,JavaScript,15,0.038
+REST API,Confluence,5,0.038
+Linux,Slack,5,0.038
+BigQuery,CI/CD,9,0.038
+RAG,Django,4,0.038
+FastAPI,Redux,3,0.038
+Flink,Snowflake,2,0.038
+Redis,HTML,4,0.038
+MySQL,Snowflake,4,0.038
+Azure,GraphQL,3,0.038
+Redux,Android,2,0.037
+Hadoop,Terraform,4,0.037
+Azure,Slack,4,0.037
+SQL,TensorFlow,7,0.037
+PyTorch,Redis,4,0.037
+CI/CD,Flutter,8,0.037
+Machine Learning,Flink,3,0.037
+MySQL,HTML,4,0.036
+RAG,Linux,6,0.036
+Kotlin,Node.js,4,0.036
+Machine Learning,Docker,8,0.036
+SQL,Linux,9,0.036
+Terraform,FastAPI,5,0.036
+PostgreSQL,BigQuery,5,0.036
+Terraform,Next.js,8,0.036
+C++,Machine Learning,3,0.036
+AWS,A/B Test,12,0.036
+React,A/B Test,10,0.036
+Spark,Vue.js,10,0.036
+Python,CSS,13,0.035
+Hadoop,Node.js,3,0.035
+Kotlin,Spark,4,0.035
+TypeScript,Confluence,8,0.035
+Elasticsearch,Confluence,2,0.035
+RAG,Terraform,6,0.035
+Elasticsearch,Git,6,0.035
+Linux,React,11,0.035
+Docker,HTML,7,0.035
+Airflow,Redis,5,0.035
+Spark,Next.js,7,0.035
+JavaScript,iOS,4,0.035
+Spark,A/B Test,4,0.035
+GCP,Tableau,5,0.035
+LLM,Snowflake,8,0.035
+GitHub Actions,Django,3,0.034
+Node.js,Jira,4,0.034
+PostgreSQL,Flutter,4,0.034
+Java,GraphQL,4,0.034
+RAG,NestJS,4,0.034
+Flink,PostgreSQL,4,0.034
+PyTorch,A/B Test,3,0.034
+MongoDB,Terraform,4,0.034
+TypeScript,MongoDB,8,0.034
+PyTorch,Airflow,4,0.034
+Spark,Slack,4,0.034
+Jenkins,Flutter,2,0.034
+dbt,Slack,3,0.034
+GitHub Actions,FastAPI,4,0.034
+HTML,Flutter,2,0.034
+Hadoop,Kubernetes,7,0.034
+SQL,JavaScript,9,0.034
+Linux,NestJS,4,0.034
+Django,HTML,2,0.033
+NestJS,Android,2,0.033
+Java,Confluence,4,0.033
+Spring Boot,GraphQL,2,0.033
+PostgreSQL,Confluence,4,0.033
+Docker,GraphQL,6,0.033
+Docker,Flutter,6,0.033
+PostgreSQL,Android,4,0.033
+C++,Spark,3,0.033
+Spark,Jira,4,0.033
+Terraform,NestJS,4,0.033
+Python,Flink,11,0.033
+Java,Android,4,0.033
+C++,Spring Boot,2,0.032
+Azure,NestJS,3,0.032
+LLM,GraphQL,7,0.032
+Deep Learning,Vue.js,8,0.032
+TypeScript,A/B Test,8,0.032
+C++,Kafka,4,0.032
+JavaScript,Kubernetes,9,0.032
+SQL,Git,10,0.032
+LLM,Hadoop,7,0.032
+Redis,Redux,3,0.032
+CI/CD,iOS,7,0.032
+Jenkins,Confluence,2,0.032
+Machine Learning,Tableau,3,0.032
+MongoDB,CSS,3,0.032
+Git,iOS,5,0.031
+A/B Test,Jira,3,0.031
+Docker,Redux,6,0.031
+TensorFlow,BigQuery,2,0.031
+Terraform,Spring Boot,4,0.031
+C++,GCP,4,0.031
+TypeScript,Linux,9,0.031
+dbt,Confluence,2,0.031
+NLP,BigQuery,2,0.031
+PostgreSQL,Snowflake,4,0.031
+BigQuery,Vue.js,8,0.031
+Machine Learning,Kafka,5,0.031
+Spring Boot,Confluence,2,0.031
+PyTorch,Kubernetes,7,0.031
+GCP,GraphQL,4,0.031
+Elasticsearch,CSS,3,0.031
+SQL,Django,6,0.031
+Kotlin,RAG,4,0.031
+Spring Boot,Android,2,0.031
+RAG,Slack,4,0.03
+LLM,Jenkins,7,0.03
+LLM,HTML,7,0.03
+Django,Vue.js,7,0.03
+C++,Spring,3,0.03
+TypeScript,Elasticsearch,7,0.03
+PyTorch,Azure,3,0.03
+A/B Test,Flutter,2,0.03
+GCP,Confluence,4,0.03
+Jenkins,React,8,0.03
+Computer Vision,Vue.js,7,0.03
+PostgreSQL,HTML,4,0.03
+Spark,React,9,0.03
+MySQL,Android,3,0.03
+Machine Learning,MySQL,4,0.03
+PyTorch,AWS,10,0.03
+dbt,Docker,6,0.03
+NestJS,CSS,3,0.03
+dbt,CI/CD,7,0.03
+AWS,Flutter,9,0.029
+RAG,Jira,4,0.029
+Linux,Django,3,0.029
+Elasticsearch,HTML,2,0.029
+JavaScript,Kotlin,4,0.029
+Computer Vision,Kubernetes,6,0.029
+Jenkins,Next.js,5,0.029
+Computer Vision,Linux,3,0.029
+MySQL,Redux,3,0.029
+Spring,Redux,3,0.029
+Linux,Flutter,3,0.029
+Spring Boot,CSS,3,0.029
+Kubernetes,GraphQL,6,0.029
+Kotlin,GraphQL,2,0.029
+Terraform,React,9,0.028
+A/B Test,Confluence,2,0.028
+JavaScript,FastAPI,4,0.028
+Airflow,Elasticsearch,3,0.028
+Airflow,MongoDB,3,0.028
+Spark,MySQL,4,0.028
+TensorFlow,FastAPI,2,0.028
+Slack,Flutter,2,0.028
+NLP,FastAPI,2,0.028
+PyTorch,Git,5,0.028
+Linux,Confluence,3,0.028
+AWS,Redux,9,0.028
+Spark,Spring Boot,3,0.028
+TensorFlow,Docker,5,0.027
+GCP,Spring Boot,4,0.027
+C++,CI/CD,6,0.027
+Django,React Native,2,0.027
+Machine Learning,FastAPI,3,0.027
+Flink,Jira,2,0.027
+Azure,Jira,3,0.027
+Flink,Docker,5,0.027
+Jira,iOS,2,0.027
+C++,Jira,2,0.027
+BigQuery,Git,5,0.027
+Machine Learning,Slack,3,0.027
+BigQuery,Node.js,3,0.027
+Snowflake,Kubernetes,6,0.027
+Machine Learning,Jira,3,0.027
+PyTorch,GCP,4,0.027
+A/B Test,Git,5,0.027
+JavaScript,Terraform,5,0.027
+Hadoop,Docker,5,0.027
+Azure,React Native,3,0.027
+FastAPI,CSS,3,0.026
+Python,NestJS,9,0.026
+RAG,GitHub Actions,4,0.026
+RAG,MongoDB,3,0.026
+Snowflake,CI/CD,6,0.026
+JavaScript,C++,3,0.026
+Snowflake,Docker,5,0.026
+RAG,Snowflake,3,0.026
+Elasticsearch,React,7,0.026
+NLP,AWS,8,0.026
+JavaScript,Django,3,0.026
+Slack,Android,2,0.026
+PyTorch,Jenkins,2,0.025
+TypeScript,Spark,7,0.025
+CI/CD,A/B Test,6,0.025
+Flink,Azure,2,0.025
+Deep Learning,Airflow,3,0.025
+Flink,Git,4,0.025
+SQL,CSS,6,0.025
+JavaScript,Confluence,3,0.025
+RAG,Jenkins,3,0.025
+C++,Git,4,0.025
+Java,Flutter,3,0.025
+Redux,React Native,2,0.025
+Kotlin,Airflow,3,0.024
+Machine Learning,Node.js,3,0.024
+Snowflake,Slack,2,0.024
+Kubernetes,CSS,6,0.024
+NestJS,Slack,2,0.024
+Kafka,Flutter,3,0.024
+Kafka,CSS,4,0.024
+dbt,Vue.js,6,0.024
+Kotlin,HTML,2,0.024
+Kotlin,NestJS,2,0.024
+Java,Redux,3,0.024
+Snowflake,FastAPI,2,0.024
+Deep Learning,Linux,3,0.024
+Tableau,Slack,2,0.024
+JavaScript,MongoDB,3,0.024
+JavaScript,Elasticsearch,3,0.024
+PyTorch,Vue.js,6,0.024
+Elasticsearch,Next.js,4,0.024
+LLM,iOS,5,0.023
+Flink,CI/CD,5,0.023
+NestJS,Jira,2,0.023
+Machine Learning,Confluence,2,0.023
+Deep Learning,A/B Test,2,0.023
+CI/CD,Django,5,0.023
+Kubernetes,Redux,5,0.023
+Django,GraphQL,1,0.023
+CSS,Flutter,2,0.023
+Computer Vision,GCP,3,0.023
+TensorFlow,GCP,3,0.023
+TensorFlow,AWS,7,0.023
+GraphQL,iOS,1,0.023
+TensorFlow,Node.js,2,0.023
+TensorFlow,Redis,2,0.023
+C++,Hadoop,1,0.023
+Linux,Next.js,5,0.023
+Tableau,Jira,2,0.023
+RAG,A/B Test,3,0.023
+Python,HTML,8,0.023
+TensorFlow,Spark,2,0.022
+Computer Vision,Redis,2,0.022
+CSS,Confluence,2,0.022
+Azure,Tableau,2,0.022
+AWS,Android,7,0.022
+PyTorch,PostgreSQL,3,0.022
+C++,AWS,7,0.022
+LLM,MongoDB,5,0.022
+Flink,GitHub Actions,2,0.022
+NLP,Confluence,1,0.022
+TensorFlow,Confluence,1,0.022
+LLM,Android,5,0.022
+Spark,Node.js,3,0.022
+C++,Django,1,0.022
+Kotlin,BigQuery,2,0.022
+C++,Node.js,2,0.022
+RAG,React Native,3,0.022
+Airflow,REST API,4,0.022
+Spark,GitHub Actions,3,0.022
+Machine Learning,MongoDB,2,0.022
+C++,GraphQL,1,0.022
+Spark,GraphQL,2,0.022
+PyTorch,CI/CD,5,0.021
+NLP,Airflow,2,0.021
+PyTorch,Kafka,3,0.021
+Spark,Confluence,2,0.021
+Airflow,Node.js,3,0.021
+A/B Test,Slack,2,0.021
+Deep Learning,FastAPI,2,0.021
+Spark,Spring,3,0.021
+BigQuery,FastAPI,2,0.021
+PyTorch,Jira,2,0.021
+Machine Learning,Linux,3,0.021
+BigQuery,Slack,2,0.021
+JavaScript,A/B Test,3,0.021
+SQL,NLP,4,0.021
+Kafka,HTML,3,0.021
+GraphQL,Android,1,0.021
+Airflow,GitHub Actions,3,0.021
+Node.js,Redux,2,0.021
+Machine Learning,dbt,2,0.02
+Java,React Native,3,0.02
+RAG,CSS,3,0.02
+Airflow,Spring,3,0.02
+Vue.js,Tableau,5,0.02
+C++,MySQL,2,0.02
+Kafka,A/B Test,3,0.02
+Machine Learning,Git,4,0.02
+TensorFlow,MongoDB,1,0.02
+Flink,Spring,2,0.02
+GraphQL,Redux,1,0.02
+Airflow,Django,2,0.02
+Machine Learning,Kubernetes,5,0.02
+Kotlin,React Native,2,0.02
+Redux,iOS,1,0.02
+Deep Learning,GCP,3,0.02
+SQL,C++,4,0.02
+Azure,Spring Boot,2,0.02
+SQL,NestJS,4,0.019
+SQL,Elasticsearch,4,0.019
+PyTorch,Node.js,2,0.019
+SQL,Deep Learning,4,0.019
+Flink,MongoDB,1,0.019
+Computer Vision,RAG,2,0.019
+NLP,Tableau,1,0.019
+TensorFlow,Kubernetes,4,0.019
+C++,Next.js,3,0.019
+Machine Learning,PostgreSQL,3,0.019
+RAG,GraphQL,2,0.019
+RAG,Flutter,2,0.019
+Kafka,React Native,3,0.019
+Spark,NestJS,2,0.019
+MongoDB,Django,1,0.019
+FastAPI,React Native,2,0.019
+Kotlin,GCP,3,0.019
+TensorFlow,Git,3,0.019
+Node.js,HTML,2,0.019
+Hadoop,Linux,2,0.019
+Elasticsearch,GraphQL,1,0.019
+Spark,Jenkins,2,0.019
+RAG,Hadoop,2,0.019
+Jenkins,CSS,2,0.019
+Spring,Android,2,0.019
+TensorFlow,Linux,2,0.019
+Python,GraphQL,6,0.018
+Computer Vision,NestJS,1,0.018
+NLP,Jenkins,1,0.018
+GitHub Actions,A/B Test,2,0.018
+BigQuery,GitHub Actions,2,0.018
+Elasticsearch,Django,1,0.018
+Linux,Redux,2,0.018
+RAG,Confluence,2,0.018
+Machine Learning,Vue.js,5,0.018
+C++,LLM,4,0.018
+Kotlin,CSS,2,0.018
+Terraform,Django,2,0.018
+Docker,React Native,4,0.018
+PyTorch,GitHub Actions,2,0.018
+MySQL,Tableau,2,0.018
+NestJS,iOS,1,0.018
+TypeScript,NLP,4,0.018
+MongoDB,Android,1,0.018
+Terraform,GraphQL,2,0.018
+AWS,Tableau,6,0.018
+Airflow,Jenkins,2,0.018
+PyTorch,MySQL,2,0.017
+JavaScript,Linux,3,0.017
+NLP,Vue.js,4,0.017
+GCP,CSS,3,0.017
+NLP,PostgreSQL,2,0.017
+Deep Learning,Kubernetes,4,0.017
+PyTorch,Spring,2,0.017
+TypeScript,Django,4,0.017
+TensorFlow,Vue.js,4,0.017
+TensorFlow,Spring Boot,1,0.017
+TypeScript,C++,4,0.017
+dbt,Spring,2,0.017
+Snowflake,Git,3,0.017
+Flink,Jenkins,1,0.017
+MongoDB,Redux,1,0.017
+Django,NestJS,1,0.017
+Spark,REST API,3,0.017
+JavaScript,Hadoop,2,0.017
+PostgreSQL,iOS,2,0.017
+Snowflake,Confluence,1,0.017
+Java,TensorFlow,2,0.017
+Jenkins,Django,1,0.017
+C++,PostgreSQL,2,0.017
+TensorFlow,Jenkins,1,0.017
+Jenkins,iOS,1,0.017
+Java,iOS,2,0.017
+Airflow,Spring Boot,2,0.017
+Tableau,Confluence,1,0.017
+Deep Learning,CI/CD,4,0.017
+Deep Learning,Git,3,0.016
+Machine Learning,Redis,2,0.016
+Jenkins,Android,1,0.016
+RAG,HTML,2,0.016
+BigQuery,Spring,2,0.016
+Spark,FastAPI,2,0.016
+Spring Boot,iOS,1,0.016
+Flink,Spring Boot,1,0.016
+Spring Boot,Flutter,1,0.016
+Spring,A/B Test,2,0.016
+TypeScript,PyTorch,4,0.016
+Spark,React Native,2,0.016
+dbt,Linux,2,0.016
+AWS,iOS,5,0.016
+Python,React Native,6,0.016
+Computer Vision,AWS,5,0.016
+TensorFlow,Kafka,2,0.016
+Docker,Android,3,0.016
+NLP,Docker,3,0.016
+SQL,iOS,3,0.015
+GCP,Flutter,2,0.015
+C++,PyTorch,1,0.015
+Machine Learning,CI/CD,4,0.015
+Kotlin,TensorFlow,1,0.015
+Spring Boot,Redux,1,0.015
+Deep Learning,AWS,5,0.015
+Jenkins,Redux,1,0.015
+Kotlin,Hadoop,1,0.015
+C++,React,4,0.015
+SQL,GraphQL,3,0.015
+SQL,Android,3,0.015
+Hadoop,BigQuery,1,0.015
+Computer Vision,REST API,2,0.015
+A/B Test,iOS,1,0.015
+Deep Learning,MongoDB,1,0.014
+NestJS,HTML,1,0.014
+SQL,HTML,3,0.014
+NLP,React Native,1,0.014
+NLP,Jira,1,0.014
+Jira,Flutter,1,0.014
+Kotlin,Django,1,0.014
+Computer Vision,CI/CD,3,0.014
+PyTorch,MongoDB,1,0.014
+Docker,A/B Test,3,0.014
+Computer Vision,Slack,1,0.014
+MongoDB,Spring Boot,1,0.014
+FastAPI,Flutter,1,0.014
+Hadoop,CI/CD,3,0.014
+Deep Learning,Kafka,2,0.014
+Kubernetes,iOS,3,0.014
+Kubernetes,Android,3,0.014
+Flink,FastAPI,1,0.014
+Java,PyTorch,2,0.014
+PyTorch,React,4,0.014
+Kubernetes,Flutter,3,0.014
+BigQuery,React,4,0.014
+BigQuery,Confluence,1,0.014
+Deep Learning,Redux,1,0.014
+A/B Test,Android,1,0.014
+Terraform,React Native,2,0.014
+Snowflake,Spring Boot,1,0.014
+FastAPI,GraphQL,1,0.014
+NLP,Slack,1,0.014
+Slack,iOS,1,0.014
+Kotlin,Flutter,1,0.014
+TensorFlow,Slack,1,0.014
+TensorFlow,Jira,1,0.014
+Computer Vision,Jira,1,0.014
+Airflow,React,4,0.013
+Django,Next.js,2,0.013
+Linux,CSS,2,0.013
+BigQuery,REST API,2,0.013
+Jenkins,HTML,1,0.013
+C++,FastAPI,1,0.013
+Deep Learning,Tableau,1,0.013
+PyTorch,NestJS,1,0.013
+Elasticsearch,A/B Test,1,0.013
+Kubernetes,HTML,3,0.013
+dbt,Spring Boot,1,0.013
+LLM,Tableau,3,0.013
+TypeScript,Hadoop,3,0.013
+Hadoop,Next.js,2,0.013
+Hadoop,Vue.js,3,0.013
+REST API,A/B Test,2,0.013
+Hadoop,React,3,0.012
+Computer Vision,Git,2,0.012
+NLP,Git,2,0.012
+PyTorch,Spring Boot,1,0.012
+TensorFlow,Azure,1,0.012
+Azure,Flutter,1,0.012
+SQL,GitHub Actions,3,0.012
+HTML,A/B Test,1,0.012
+Computer Vision,Azure,1,0.012
+Deep Learning,Jenkins,1,0.012
+NLP,Node.js,1,0.012
+Deep Learning,Spring Boot,1,0.012
+Elasticsearch,React Native,1,0.012
+BigQuery,Jenkins,1,0.012
+Jenkins,A/B Test,1,0.012
+JavaScript,Spark,2,0.012
+Snowflake,Vue.js,3,0.012
+Machine Learning,GraphQL,1,0.012
+Spring Boot,A/B Test,1,0.012
+MongoDB,React Native,1,0.012
+Snowflake,Jira,1,0.012
+TypeScript,Machine Learning,3,0.011
+Kotlin,A/B Test,1,0.011
+Node.js,Confluence,1,0.011
+PyTorch,BigQuery,1,0.011
+Flink,Redis,1,0.011
+C++,Redis,1,0.011
+PyTorch,Slack,1,0.011
+Computer Vision,Node.js,1,0.011
+Flink,Node.js,1,0.011
+Spark,iOS,1,0.011
+Spark,Flutter,1,0.011
+TensorFlow,GitHub Actions,1,0.011
+Redis,Android,1,0.011
+BigQuery,Next.js,2,0.011
+Kotlin,PyTorch,1,0.011
+PyTorch,Next.js,2,0.011
+Kotlin,dbt,1,0.011
+Jenkins,React Native,1,0.011
+JavaScript,RAG,2,0.011
+Deep Learning,Slack,1,0.011
+NLP,Redis,1,0.011
+dbt,FastAPI,1,0.011
+dbt,Jira,1,0.011
+NLP,Spark,1,0.011
+dbt,Git,2,0.011
+Hadoop,Redis,1,0.011
+FastAPI,HTML,1,0.011
+Deep Learning,BigQuery,1,0.011
+TensorFlow,MySQL,1,0.01
+FastAPI,A/B Test,1,0.01
+Node.js,Tableau,1,0.01
+Azure,HTML,1,0.01
+Hadoop,MySQL,1,0.01
+NLP,Kubernetes,2,0.01
+TensorFlow,Spring,1,0.01
+Computer Vision,MySQL,1,0.01
+Terraform,REST API,2,0.01
+Snowflake,Node.js,1,0.01
+Spark,MongoDB,1,0.01
+Spark,Elasticsearch,1,0.01
+BigQuery,Jira,1,0.01
+Spring,iOS,1,0.01
+Redis,Snowflake,1,0.01
+Spark,Android,1,0.01
+Machine Learning,Jenkins,1,0.01
+Spring,Flutter,1,0.01
+Machine Learning,HTML,1,0.01
+Machine Learning,React,3,0.01
+Linux,GraphQL,1,0.01
+Snowflake,GitHub Actions,1,0.01
+NLP,Linux,1,0.01
+NLP,Spring,1,0.01
+Deep Learning,Azure,1,0.01
+Terraform,iOS,1,0.009
+Redis,A/B Test,1,0.009
+Terraform,Android,1,0.009
+Terraform,Flutter,1,0.009
+JavaScript,NLP,1,0.009
+Snowflake,Linux,1,0.009
+Snowflake,Spring,1,0.009
+Deep Learning,GitHub Actions,1,0.009
+Deep Learning,Node.js,1,0.009
+RAG,Android,1,0.009
+RAG,iOS,1,0.009
+Redis,BigQuery,1,0.009
+NLP,Terraform,1,0.009
+Python,Redux,3,0.009
+Python,Flutter,3,0.009
+LLM,Flink,2,0.009
+dbt,GitHub Actions,1,0.009
+Node.js,A/B Test,1,0.009
+Azure,A/B Test,1,0.009
+dbt,Redis,1,0.009
+SQL,Jenkins,2,0.009
+Deep Learning,Redis,1,0.009
+dbt,Node.js,1,0.009
+CSS,A/B Test,1,0.009
+TensorFlow,Terraform,1,0.009
+Kotlin,Azure,1,0.009
+TypeScript,TensorFlow,2,0.009
+TensorFlow,CI/CD,2,0.009
+RAG,Flink,1,0.009
+Kubernetes,A/B Test,2,0.008
+Terraform,Tableau,1,0.008
+Deep Learning,MySQL,1,0.008
+Azure,CSS,1,0.008
+Computer Vision,PostgreSQL,1,0.008
+Hadoop,REST API,1,0.008
+PyTorch,Terraform,1,0.008
+MySQL,A/B Test,1,0.008
+NLP,Kafka,1,0.008
+PostgreSQL,Tableau,1,0.008
+GCP,iOS,1,0.008
+Kafka,Android,1,0.008
+Java,NLP,1,0.008
+JavaScript,Jenkins,1,0.008
+TensorFlow,REST API,1,0.008
+PostgreSQL,Redux,1,0.008
+Flink,Vue.js,2,0.008
+TensorFlow,PostgreSQL,1,0.008
+Spring,React Native,1,0.008
+Deep Learning,Spring,1,0.008
+BigQuery,Linux,1,0.008
+Kubernetes,React Native,2,0.008
+NLP,REST API,1,0.008
+NLP,React,2,0.008
+C++,REST API,1,0.007
+Java,NestJS,1,0.007
+Java,A/B Test,1,0.007
+Elasticsearch,GCP,1,0.007
+Snowflake,REST API,1,0.007
+Spark,Redis,1,0.007
+Linux,React Native,1,0.007
+Spark,CSS,1,0.007
+Machine Learning,Spring,1,0.007
+Machine Learning,Terraform,1,0.007
+GCP,Android,1,0.007
+GCP,HTML,1,0.007
+dbt,REST API,1,0.007
+TypeScript,Airflow,2,0.007
+Kafka,Tableau,1,0.007
+PostgreSQL,A/B Test,1,0.007
+GCP,NestJS,1,0.007
+dbt,React,2,0.007
+Deep Learning,REST API,1,0.006
+GCP,React Native,1,0.006
+Python,Android,2,0.006
+PyTorch,REST API,1,0.006
+Terraform,CSS,1,0.006
+Tableau,Git,1,0.006
+JavaScript,Machine Learning,1,0.006
+Machine Learning,REST API,1,0.006
+Hadoop,Git,1,0.006
+NLP,Next.js,1,0.006
+Computer Vision,Next.js,1,0.006
+Docker,iOS,1,0.005
+NLP,CI/CD,1,0.005
+SQL,Redux,1,0.005
+Deep Learning,React,1,0.004
+SQL,React Native,1,0.004
+Snowflake,React,1,0.004
+TypeScript,Deep Learning,1,0.004
+TensorFlow,React,1,0.004
+TypeScript,Computer Vision,1,0.004
+Computer Vision,React,1,0.004
+TypeScript,dbt,1,0.004
+TypeScript,BigQuery,1,0.004
+Python,iOS,1,0.003
