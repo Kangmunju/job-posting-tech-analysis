@@ -1,0 +1,6 @@
+﻿,data_analyst,data_engineer,data_scientist,backend,frontend
+data_analyst,1.0,0.65,0.55,0.29,0.1
+data_engineer,0.65,1.0,0.65,0.64,0.2
+data_scientist,0.55,0.65,1.0,0.54,0.25
+backend,0.29,0.64,0.54,1.0,0.6
+frontend,0.1,0.2,0.25,0.6,1.0
