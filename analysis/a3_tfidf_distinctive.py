@@ -87,7 +87,9 @@ def main():
         top = tfidf.loc[role].sort_values(ascending=False).head(8)
 
         parts = [
-            (f"{skill}(TFIDF {value:.3f}, 등장 {tf.loc[role, skill] * 100:.0f}%)")
+            (
+                f"{skill}(TFIDF {value:.3f}, 등장 {round(tf.loc[role, skill] * 100, 1):.0f}%)"
+            )
             for skill, value in top.items()
         ]
 
@@ -214,3 +216,7 @@ if __name__ == "__main__":
 # TF × IDF로 최종 TF-IDF를 계산
 # 등장률이 높더라도 여러 직무에서 흔한 기술은 상대적으로 가중치가 낮아지는 것을 확인함
 # 특정 직무에서 집중적으로 등장하는 기술은 변벽력이 높게 평가되는 것을 확인함
+
+# 최종 점검 시 a2와 a3의 Machine Learning 등장률이 38%와 39%로 서로 다르게 출력되는 것을 확인함
+# 반올림 시점의 차이가 원인으로 판명되어 a3 출력 부분에 round()를 추가해 통일하였음
+# TF-IDF 계산값은 변경하지 않고 출력 형식만 수정함
