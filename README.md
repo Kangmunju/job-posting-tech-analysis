@@ -127,14 +127,52 @@ SQL의 등장률은 Python보다 약 22.5%p 높았습니다.
 
 원본 채용공고 CSV, 상세 JSON 캐시 및 SQLite 데이터베이스는 Git 추적 제외 대상으로 관리합니다.
 
-데이터 수집 및 적재 코드는 다음과 같이 실행할 수 있도록 구성했습니다.
+### 8.1 라이브러리 설치
+
+프로젝트 최상위 폴더에서 필요한 Python 라이브러리를 설치합니다.
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 8.2 데이터 수집 및 적재
+
+원티드 채용공고 데이터를 수집하고 SQLite 데이터베이스에 적재합니다.
 
 ```bash
 python src/collect_wanted.py
 python src/build_db.py
 ```
 
+### 8.3 데이터 분석 실행
+
+데이터 수집 및 적재가 완료되면 분석 스크립트를 다음 순서대로 실행합니다.
+
+```bash
+python analysis/a1_eda.py
+python analysis/a2_skill_frequency.py
+python analysis/a3_tfidf_distinctive.py
+python analysis/a4_cooccurrence.py
+python analysis/a5_insights.py
+```
+
+각 분석 스크립트의 역할은 다음과 같습니다.
+
+| 파일 | 분석 내용 |
+|---|---|
+| `a1_eda.py` | 데이터 탐색 및 기초 통계 |
+| `a2_skill_frequency.py` | 직무별 기술 등장률 분석 |
+| `a3_tfidf_distinctive.py` | TF-IDF 기반 직무별 특징 기술 분석 |
+| `a4_cooccurrence.py` | 기술 공동출현 및 Jaccard 유사도 분석 |
+| `a5_insights.py` | LLM 요구 현황, 경력별 기술 수 및 직무 간 유사도 분석 |
+
+분석 결과는 `models/` 및 `outputs/` 폴더에 저장됩니다.
+
+### 8.4 재현성 관련 주의사항
+
 외부 API의 접근 정책이나 채용공고 내용은 변경될 수 있으므로 동일한 데이터와 분석 결과가 항상 재현되는 것은 아닙니다.
+
+또한 원본 데이터와 SQLite 데이터베이스는 GitHub에 공개하지 않으므로, 분석을 재현하려면 데이터 수집 및 적재 과정을 먼저 수행해야 합니다.
 
 ## 9. 분석의 한계
 
