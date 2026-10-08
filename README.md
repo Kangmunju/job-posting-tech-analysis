@@ -112,7 +112,7 @@ SQL의 등장률은 Python보다 약 22.5%p 높았습니다.
 | `src/build_db.py` | CSV 데이터 SQLite 적재 |
 | `src/db.py` | 데이터베이스 관리 |
 | `analysis/a1_eda.py` | 데이터 탐색 및 기초 통계 |
-| `analysis/a2_skill_freq.py` | 직무별 기술 등장률 분석 |
+| `analysis/a2_skill_frequency.py` | 직무별 기술 등장률 분석 |
 | `reports/analysis_report.md` | 주요 분석 방법 및 결과 보고서 |
 | `reports/FINDINGS.md` | 4가지 핵심 인사이트 |
 | `reports/DATA_ACCESS.md` | 데이터 접근 및 수집 기록 |
