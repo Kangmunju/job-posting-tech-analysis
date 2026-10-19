@@ -44,8 +44,9 @@ SKILLS: dict[str, list[str]] = {
         "go lang",
     ],
     # R&D의 R을 R 언어로 잘못 잡지 않도록 방어
+    # 대문자 R만 인정하고, R을·R과처럼 한글 조사가 붙는 경우도 잡도록 영문/숫자 경계를 직접 지정
     "R": [
-        r"\bR\b(?!&D)",
+        r"(?<![A-Za-z0-9])R(?![A-Za-z0-9])(?!&D)",
     ],
     "C++": [
         r"c\+\+",
@@ -55,8 +56,15 @@ SKILLS: dict[str, list[str]] = {
         "c sharp",
     ],
     # C++ / C#의 C를 C 언어로 중복 인식하지 않도록 방어
+    # 시리즈 C 투자, C-level, 목록 번호(C.)가 C 언어로 잡히지 않도록 C/C++, C, Python, C 언어처럼
+    # 다른 기술과 나열되거나 C 언어로 쓰인 문맥만 인정함
     "C": [
-        r"\bC\b(?!\+|#)",
+        # C/C++, C, C++ 처럼 C 뒤에 구분 기호가 오는 경우
+        r"(?<!시리즈 )(?<![A-Za-z0-9])C(?![A-Za-z0-9+#])(?=\s*[/,·])",
+        # Java, C, Python 처럼 C 앞에 구분 기호가 오는 경우
+        r"(?:(?<=[,·])|(?<=[,·]\s))C(?![A-Za-z0-9+#\-])(?!\s*레벨)",
+        # C 언어, C언어
+        r"(?<![A-Za-z0-9])C\s*언어",
     ],
     "Kotlin": [
         "kotlin",
@@ -188,8 +196,8 @@ SKILLS: dict[str, list[str]] = {
         "dbt",
     ],
     "ETL": [
-        r"\betl\b",
-        r"\belt\b",
+        "etl",
+        "elt",
     ],
     # -----------------------------------------------------------------
     # 데이터베이스 / 데이터웨어하우스
@@ -260,7 +268,7 @@ SKILLS: dict[str, list[str]] = {
     "Kubernetes": [
         "kubernetes",
         "쿠버네티스",
-        r"\bk8s\b",
+        "k8s",
     ],
     "Terraform": [
         "terraform",
@@ -277,7 +285,7 @@ SKILLS: dict[str, list[str]] = {
     "CI/CD": [
         "ci/cd",
         "ci cd",
-        r"\bcicd\b",
+        "cicd",
     ],
     "Linux": [
         "linux",
@@ -404,7 +412,7 @@ SKILLS: dict[str, list[str]] = {
     # 개발 / 협업 도구
     # -----------------------------------------------------------------
     "Git": [
-        r"\bgit\b",
+        "git",
         "github",
         "gitlab",
         "깃허브",
@@ -483,6 +491,19 @@ def _compile(alias: str) -> re.Pattern:
     )
 
 
+# 하위 기술 : 상위 기술
+#
+# 하위 기술의 이름 안에 상위 기술의 이름이 들어 있어서 둘이 함께 잡히는 경우를 정리하기 위한 표
+# ex) Spring Boot 안의 Spring, React Native 안의 React, GitHub Actions 안의 GitHub(Git)
+# 하위 기술이 차지한 글자는 상위 기술을 찾을 때만 가리고, 상위 기술이 따로 언급되면 그대로 인정함
+
+SUB_SKILLS: dict[str, str] = {
+    "Spring Boot": "Spring",
+    "React Native": "React",
+    "GitHub Actions": "Git",
+}
+
+
 # =====================================================================
 # 3. 모든 스킬 패턴 미리 컴파일
 # =====================================================================
@@ -515,8 +536,31 @@ def extract_skills(text: str) -> set[str]:
 
     found = set()
 
+    # 상위 기술을 찾을 때 사용할 텍스트 (상위 기술 이름 : 하위 기술이 차지한 글자를 공백으로 가린 텍스트)
+    masked_texts = {}
+
+    # 1단계: 하위 기술을 먼저 찾고, 그 글자를 해당 상위 기술용 텍스트에서 가림
     for canon, pattern in _COMPILED:
-        if pattern.search(text):
+        if canon not in SUB_SKILLS:
+            continue
+
+        parent = SUB_SKILLS[canon]
+
+        for match in pattern.finditer(text):
+            found.add(canon)
+
+            base_text = masked_texts.get(parent, text)
+            blank = " " * (match.end() - match.start())
+            masked_texts[parent] = base_text[: match.start()] + blank + base_text[match.end() :]
+
+    # 2단계: 나머지 기술을 찾음 (상위 기술은 가려진 텍스트에서 찾음)
+    for canon, pattern in _COMPILED:
+        if canon in SUB_SKILLS:
+            continue
+
+        target_text = masked_texts.get(canon, text)
+
+        if pattern.search(target_text):
             found.add(canon)
 
     return found
@@ -583,6 +627,25 @@ def main():
         ("코드 리뷰, 웹뷰, 인터뷰, 어트리뷰션", set()),
         ("그루비 데이터 분석", set()),
         ("루비 온 레일즈", {"Ruby"}),
+        ("C/C++, Python", {"C", "C++", "Python"}),
+        ("Java, C, Python 경험", {"Java", "C", "Python"}),
+        ("C 언어 개발", {"C"}),
+        ("C-level 임원과 소통", set()),
+        ("CEO·C레벨 리더십", set()),
+        ("시리즈 C 투자 유치", set()),
+        ("C. 아래 중 5가지 이상", set()),
+        ("Spring Boot", {"Spring Boot"}),
+        ("Spring Boot, Spring Security, Spring", {"Spring Boot", "Spring"}),
+        ("React Native", {"React Native"}),
+        ("React Native와 React 경험", {"React Native", "React"}),
+        ("GitHub Actions", {"GitHub Actions"}),
+        ("GitHub Actions, Git", {"GitHub Actions", "Git"}),
+        ("ETL/ELT 파이프라인", {"ETL"}),
+        ("ETL을 구축", {"ETL"}),
+        ("Git, K8S", {"Git", "Kubernetes"}),
+        ("Python 또는 R을 활용한 분석", {"Python", "R"}),
+        ("R&D 경험", set()),
+        ("gitlab", {"Git"}),
     ]
 
     print()
@@ -636,4 +699,16 @@ if __name__ == "__main__":
 # 한글로 시작하는 별칭은 앞에 한글이 붙어 있으면 매칭하지 않도록 앞쪽 경계를 추가함 (뒤쪽은 조사 때문에 열어 둠)
 # 같은 경계로 그루비 안의 루비가 Ruby로 잡히던 오탐도 함께 사라짐
 # 수정 전후를 전체 공고로 비교해 Vue.js 259건, Ruby 1건만 줄어든 것을 확인함
-# 오탐 케이스를 자체 테스트에 추가해 8개 → 13개로 늘려 모두 통과함
+
+# Spring Boot, React Native, GitHub Actions처럼 이름 안에 상위 기술이 들어 있는 경우를 SUB_SKILLS 표로 정리함
+# 하위 기술이 차지한 글자는 상위 기술을 찾을 때만 가리고, 상위 기술이 따로 언급되면 그대로 인정함
+# (하위 기술이 잡히면 상위 기술을 통째로 빼면 React Native 공고 70건 중 React를 따로 요구한 59건이 사라지기 때문)
+
+# C 언어는 시리즈 C 투자, C-level, 목록 번호(C.)가 잡히던 문제가 있어 C/C++, C, Python, C 언어처럼 나열되거나 C 언어로 쓰인 문맥만 인정함
+# 수정 전후를 전체 공고로 비교해 C 34건 → 20건이 되었고, 사라진 14건은 모두 오탐이었음
+
+# \b로 시작하는 정규식 별칭은 대소문자를 구분하고 한글 조사가 붙으면 놓쳐서 ETL이 0건으로 집계되던 문제를 발견함
+# etl, elt, k8s, cicd, git은 일반 별칭으로 바꾸고 R은 영문/숫자 경계를 직접 지정해 대문자 표기와 한글 조사 표기도 인식함
+# ETL 0건 → 80건, Git 180건 → 259건(GitHub Actions 단독 언급 제외), Kubernetes +13건, R +4건, CI/CD +1건
+
+# 오탐·누락 케이스를 자체 테스트에 추가해 8개 → 32개로 늘려 모두 통과함
