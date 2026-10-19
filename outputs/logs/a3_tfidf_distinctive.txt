@@ -1,0 +1,38 @@
+
+========================================================================
+a3 — 직무를 '변별'하는 기술 TOP (TF-IDF: 그 직무에서 유독 두드러짐)
+========================================================================
+
+[데이터 분석가]
+ SQL(TFIDF 0.982, 등장 83%); Tableau(TFIDF 0.887, 등장 42%); Python(TFIDF 0.716, 등장 61%); A/B Test(TFIDF 0.515, 등장 37%); BigQuery(TFIDF 0.405, 등장 24%); R(TFIDF 0.296, 등장 14%); Looker(TFIDF 0.266, 등장 13%); Power BI(TFIDF 0.266, 등장 13%)
+
+[데이터 엔지니어]
+ Python(TFIDF 0.822, 등장 70%); Kafka(TFIDF 0.755, 등장 45%); SQL(TFIDF 0.745, 등장 63%); Airflow(TFIDF 0.733, 등장 52%); ETL(TFIDF 0.718, 등장 42%); Spark(TFIDF 0.672, 등장 48%); AWS(TFIDF 0.587, 등장 59%); dbt(TFIDF 0.515, 등장 30%)
+
+[데이터 사이언티스트]
+ Python(TFIDF 0.854, 등장 72%); PyTorch(TFIDF 0.691, 등장 33%); Deep Learning(TFIDF 0.636, 등장 30%); LLM(TFIDF 0.548, 등장 55%); Machine Learning(TFIDF 0.472, 등장 34%); RAG(TFIDF 0.372, 등장 26%); TensorFlow(TFIDF 0.311, 등장 15%); Computer Vision(TFIDF 0.298, 등장 14%)
+
+[백엔드]
+ Kubernetes(TFIDF 0.719, 등장 61%); AWS(TFIDF 0.612, 등장 61%); CI/CD(TFIDF 0.609, 등장 52%); Terraform(TFIDF 0.604, 등장 36%); Python(TFIDF 0.526, 등장 44%); Docker(TFIDF 0.474, 등장 40%); Java(TFIDF 0.448, 등장 26%); Redis(TFIDF 0.407, 등장 19%)
+
+[프론트엔드]
+ React(TFIDF 1.598, 등장 94%); TypeScript(TFIDF 1.160, 등장 82%); Next.js(TFIDF 0.921, 등장 54%); CSS(TFIDF 0.708, 등장 34%); JavaScript(TFIDF 0.646, 등장 38%); React Native(TFIDF 0.525, 등장 25%); HTML(TFIDF 0.446, 등장 21%); Git(TFIDF 0.431, 등장 43%)
+
+========================================================================
+a3 — 직무 고유 기술 TOP (해당 직무 등장률 − 다른 직무 등장률, %p)
+========================================================================
+
+[데이터 분석가]
+ SQL(+66%p, 해당 83% vs 그 외 17%); Tableau(+41%p, 해당 42% vs 그 외 1%); A/B Test(+33%p, 해당 37% vs 그 외 3%); BigQuery(+19%p, 해당 24% vs 그 외 5%); Python(+16%p, 해당 61% vs 그 외 45%); R(+13%p, 해당 14% vs 그 외 1%); Looker(+13%p, 해당 13% vs 그 외 0%); Power BI(+12%p, 해당 13% vs 그 외 0%)
+
+[데이터 엔지니어]
+ Airflow(+47%p, 해당 52% vs 그 외 5%); SQL(+45%p, 해당 63% vs 그 외 18%); Spark(+44%p, 해당 48% vs 그 외 4%); ETL(+39%p, 해당 42% vs 그 외 4%); Kafka(+36%p, 해당 45% vs 그 외 9%); dbt(+28%p, 해당 30% vs 그 외 2%); Python(+27%p, 해당 70% vs 그 외 43%); AWS(+23%p, 해당 59% vs 그 외 36%)
+
+[데이터 사이언티스트]
+ LLM(+35%p, 해당 55% vs 그 외 20%); Python(+33%p, 해당 72% vs 그 외 39%); PyTorch(+31%p, 해당 33% vs 그 외 1%); Machine Learning(+31%p, 해당 34% vs 그 외 3%); Deep Learning(+30%p, 해당 30% vs 그 외 1%); RAG(+18%p, 해당 26% vs 그 외 8%); TensorFlow(+14%p, 해당 15% vs 그 외 1%); Computer Vision(+14%p, 해당 14% vs 그 외 0%)
+
+[백엔드]
+ Kubernetes(+46%p, 해당 61% vs 그 외 15%); CI/CD(+34%p, 해당 52% vs 그 외 18%); AWS(+33%p, 해당 61% vs 그 외 28%); Terraform(+31%p, 해당 36% vs 그 외 5%); Docker(+25%p, 해당 40% vs 그 외 15%); Linux(+22%p, 해당 27% vs 그 외 5%); Java(+20%p, 해당 26% vs 그 외 7%); Redis(+17%p, 해당 19% vs 그 외 2%)
+
+[프론트엔드]
+ React(+88%p, 해당 94% vs 그 외 6%); TypeScript(+74%p, 해당 82% vs 그 외 8%); Next.js(+51%p, 해당 54% vs 그 외 3%); JavaScript(+35%p, 해당 38% vs 그 외 3%); CSS(+32%p, 해당 34% vs 그 외 1%); React Native(+25%p, 해당 25% vs 그 외 0%); Git(+22%p, 해당 43% vs 그 외 21%); HTML(+21%p, 해당 21% vs 그 외 1%)

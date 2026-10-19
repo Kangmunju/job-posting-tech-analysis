@@ -1,0 +1,54 @@
+================================================================
+직무 재분류 테스트
+================================================================
+PASS | data_analyst <- [쿠팡] 데이터 분석가 (CRM FP&A) (기대: data_analyst)
+PASS | data_engineer <- Data Engineer (Growth) (기대: data_engineer)
+PASS | data_scientist <- LLM 트레이닝 엔지니어(데이터 사이언티스트) (기대: data_scientist)
+PASS | backend <- [그라운드] 백엔드 개발자 (Backend Developer) (기대: backend)
+PASS | frontend <- 프론트엔드 엔지니어 (3년 이상/부산) (기대: frontend)
+PASS | other <- 재무회계담당자 5년이상 팀장급 (기대: other)
+PASS | data_scientist <- AI Engineer (Edge AI 최적화) (기대: data_scientist)
+PASS | data_analyst <- Data Analytics Engineer (기대: data_analyst)
+PASS | frontend <- FE 개발자 3년 이상 (기대: frontend)
+PASS | backend <- [인턴] BE Engineer (전환형) (기대: backend)
+PASS | data_scientist <- Senior MLOps 엔지니어 (기대: data_scientist)
+PASS | data_scientist <- AI 개발자 팀원/팀장 (사원~과장) (기대: data_scientist)
+PASS | data_scientist <- Applied Scientist (Agent) (기대: data_scientist)
+PASS | fullstack <- 풀스택 개발자 (React / Node.js) (기대: fullstack)
+PASS | fullstack <- [팀 스케일업] AI 풀스택 개발자 (LLM 파이프라인) (기대: fullstack)
+PASS | fullstack <- 주니어 프론트엔드 (풀스택 성장형) 개발자 (기대: fullstack)
+PASS | other <- AI·엔지니어링 총괄 (Head of AI & Engineering) (기대: other)
+PASS | other <- AI Tutor - Arabic (기대: other)
+PASS | frontend <- Frontend Engineer (MLOps, Vision AI Platform) (기대: frontend)
+PASS | backend <- AI FM 모델 개발 · MLOps 백엔드/플랫폼 엔지니어 (기대: backend)
+PASS | frontend <- 프론트개발자(web, app) (기대: frontend)
+PASS | frontend <- 프론트 엔지니어 (기대: frontend)
+PASS | frontend <- Lucy Studio Front 개발자 (신입/주니어) (기대: frontend)
+PASS | frontend <- 프론트엔트 개발자 (기대: frontend)
+PASS | backend <- Platform Engineer (기대: backend)
+PASS | backend <- Senior Infrastructure Engineer (기대: backend)
+PASS | backend <- DevSecOps 리드 (기대: backend)
+PASS | data_scientist <- [AI Work Agent] AI Research Engineer - Post-training (기대: data_scientist)
+PASS | data_scientist <- 사운드AI 리서치 엔지니어 (3년차 이상) (기대: data_scientist)
+PASS | data_scientist <- AI Agent Engineer (5년이상) (기대: data_scientist)
+PASS | data_scientist <- [SK inc.(AX)] AI Agent 엔지니어 (기대: data_scientist)
+PASS | data_scientist <- [SK inc.(AX)] AI Agent 개발자 (기대: data_scientist)
+PASS | other <- Front Office 운영 담당자 (기대: other)
+PASS | other <- 프론트 오피스 운영 담당자 (기대: other)
+
+테스트 결과: 34/34 통과
+
+========================================
+실제 DB 직무 재분류 결과
+========================================
+데이터 분석가                71건
+데이터 엔지니어               92건
+데이터 사이언티스트            155건
+백엔드                   227건
+프론트엔드                 160건
+----------------------------------------
+분석 대상                 705건
+풀스택(분석 제외)             86건
+other(분석 제외)          476건
+전체                  1,267건
+========================================

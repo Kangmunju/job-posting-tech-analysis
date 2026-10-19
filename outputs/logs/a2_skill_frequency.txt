@@ -1,0 +1,19 @@
+
+========================================================================
+a2 — 직무별 상위 요구 기술 (등장률 = 그 직무 공고 중 %)
+========================================================================
+
+[데이터 분석가] n=71
+ SQL 83%, Python 61%, Tableau 42%, A/B Test 37%, BigQuery 24%, Airflow 16%, R 14%, Power BI 13%, Looker 13%, dbt 11%, ETL 10%, GCP 10%
+
+[데이터 엔지니어] n=92
+ Python 70%, SQL 63%, AWS 59%, Airflow 52%, Spark 48%, Kafka 45%, ETL 42%, Kubernetes 36%, dbt 30%, LLM 30%, Snowflake 24%, Java 23%
+
+[데이터 사이언티스트] n=155
+ Python 72%, LLM 55%, Machine Learning 34%, PyTorch 33%, Deep Learning 30%, RAG 26%, Docker 22%, AWS 21%, SQL 20%, Git 16%, Kubernetes 16%, TensorFlow 15%
+
+[백엔드] n=227
+ AWS 61%, Kubernetes 61%, CI/CD 52%, Python 44%, Docker 40%, Terraform 36%, Git 31%, Linux 27%, Java 26%, LLM 22%, GCP 22%, PostgreSQL 21%
+
+[프론트엔드] n=160
+ React 94%, TypeScript 82%, Next.js 54%, Git 43%, JavaScript 38%, CSS 34%, CI/CD 31%, REST API 25%, React Native 25%, AWS 24%, HTML 21%, LLM 18%

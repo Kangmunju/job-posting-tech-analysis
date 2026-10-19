@@ -1,0 +1,44 @@
+================================================================
+스킬 사전 테스트
+================================================================
+입력: 자격요건: Python/파이썬, SQL 능숙. AWS, k8s(쿠버네티스) 경험 우대. React.js, node.js, PostgreSQL(postgres). C++ 및 R&D 경험. LLM/RAG 관심.
+
+추출: ['AWS', 'C++', 'Kubernetes', 'LLM', 'Node.js', 'PostgreSQL', 'Python', 'RAG', 'React', 'SQL']
+
+사전 규모: 표준스킬 90개, 별칭패턴 211개
+
+[자체 테스트]
+PASS | Python/파이썬 → ['Python'] (기대: ['Python'])
+PASS | k8s 쿠버네티스 → ['Kubernetes'] (기대: ['Kubernetes'])
+PASS | C++ → ['C++'] (기대: ['C++'])
+PASS | R&D → [] (기대: [])
+PASS | React.js → ['React'] (기대: ['React'])
+PASS | node.js → ['Node.js'] (기대: ['Node.js'])
+PASS | PostgreSQL postgres → ['PostgreSQL'] (기대: ['PostgreSQL'])
+PASS | LLM RAG → ['LLM', 'RAG'] (기대: ['LLM', 'RAG'])
+PASS | Vue.js → ['Vue.js'] (기대: ['Vue.js'])
+PASS | vue 3, Vuex → ['Vue.js'] (기대: ['Vue.js'])
+PASS | 코드 리뷰, 웹뷰, 인터뷰, 어트리뷰션 → [] (기대: [])
+PASS | 그루비 데이터 분석 → [] (기대: [])
+PASS | 루비 온 레일즈 → ['Ruby'] (기대: ['Ruby'])
+PASS | C/C++, Python → ['C', 'C++', 'Python'] (기대: ['C', 'C++', 'Python'])
+PASS | Java, C, Python 경험 → ['C', 'Java', 'Python'] (기대: ['C', 'Java', 'Python'])
+PASS | C 언어 개발 → ['C'] (기대: ['C'])
+PASS | C-level 임원과 소통 → [] (기대: [])
+PASS | CEO·C레벨 리더십 → [] (기대: [])
+PASS | 시리즈 C 투자 유치 → [] (기대: [])
+PASS | C. 아래 중 5가지 이상 → [] (기대: [])
+PASS | Spring Boot → ['Spring Boot'] (기대: ['Spring Boot'])
+PASS | Spring Boot, Spring Security, Spring → ['Spring', 'Spring Boot'] (기대: ['Spring', 'Spring Boot'])
+PASS | React Native → ['React Native'] (기대: ['React Native'])
+PASS | React Native와 React 경험 → ['React', 'React Native'] (기대: ['React', 'React Native'])
+PASS | GitHub Actions → ['GitHub Actions'] (기대: ['GitHub Actions'])
+PASS | GitHub Actions, Git → ['Git', 'GitHub Actions'] (기대: ['Git', 'GitHub Actions'])
+PASS | ETL/ELT 파이프라인 → ['ETL'] (기대: ['ETL'])
+PASS | ETL을 구축 → ['ETL'] (기대: ['ETL'])
+PASS | Git, K8S → ['Git', 'Kubernetes'] (기대: ['Git', 'Kubernetes'])
+PASS | Python 또는 R을 활용한 분석 → ['Python', 'R'] (기대: ['Python', 'R'])
+PASS | R&D 경험 → [] (기대: [])
+PASS | gitlab → ['Git'] (기대: ['Git'])
+
+테스트 결과: 32/32 통과

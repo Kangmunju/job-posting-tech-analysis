@@ -1,0 +1,32 @@
+
+========================================================================
+a4 — 함께 요구되는 기술 쌍
+========================================================================
+
+[동시빈도 TOP 12] (같은 공고에 함께 등장한 횟수)
+TypeScript + React: 154회 (Jaccard 0.733)
+Python + AWS: 144회 (Jaccard 0.316)
+AWS + CI/CD: 131회 (Jaccard 0.383)
+AWS + Kubernetes: 131회 (Jaccard 0.373)
+Python + SQL: 126회 (Jaccard 0.341)
+Python + LLM: 117회 (Jaccard 0.288)
+Kubernetes + CI/CD: 111회 (Jaccard 0.370)
+Python + Kubernetes: 110회 (Jaccard 0.258)
+Docker + Kubernetes: 110회 (Jaccard 0.418)
+React + Next.js: 100회 (Jaccard 0.526)
+Python + Docker: 99회 (Jaccard 0.253)
+AWS + Docker: 98회 (Jaccard 0.291)
+
+[Jaccard TOP 12] (인기 편향 보정 — 진짜 '세트'로 붙어다니는 조합)
+Android + iOS: Jaccard 0.926 (25회)
+TypeScript + React: Jaccard 0.733 (154회)
+HTML + CSS: Jaccard 0.571 (36회)
+Jira + Slack: Jaccard 0.547 (35회)
+React + Next.js: Jaccard 0.526 (100회)
+TypeScript + Next.js: Jaccard 0.484 (92회)
+Jira + Confluence: Jaccard 0.460 (23회)
+PyTorch + TensorFlow: Jaccard 0.426 (26회)
+Docker + Kubernetes: Jaccard 0.418 (110회)
+PyTorch + Deep Learning: Jaccard 0.410 (32회)
+AWS + CI/CD: Jaccard 0.383 (131회)
+dbt + Snowflake: Jaccard 0.377 (20회)
