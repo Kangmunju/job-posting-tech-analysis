@@ -78,7 +78,8 @@ RULES: list[tuple[str, str, re.Pattern]] = [
         "frontend",
         "프론트엔드 개발자",
         re.compile(
-            r"(프론트\s*엔드|front\s*end|frontend|"
+            r"(프론트\s*(엔[드트]|개발|엔지니어)|front\s*end|frontend|"
+            r"front\s*(개발|dev|engineer)|"
             r"(?<![A-Za-z])fe(?![A-Za-z])|"
             r"퍼블리셔|웹\s*퍼블|"
             r"\bui\s*개발|react\s*개발|vue\s*개발|"
@@ -99,25 +100,28 @@ RULES: list[tuple[str, str, re.Pattern]] = [
             r"api\s*개발|플랫폼\s*개발자|"
             r"java\s*개발|python\s*개발|node\s*개발|"
             r"\bgo\s*개발|spring\s*개발|"
-            r"devops|데브옵스|"
+            r"devops|devsecops|데브옵스|"
             r"소프트웨어\s*엔지니어|software\s*engineer|"
             r"앱\s*개발|웹.?앱|"
-            r"인프라\s*엔지니어|클라우드\s*엔지니어|"
-            r"플랫폼\s*엔지니어|시스템\s*엔지니어)",
+            r"인프라\s*엔지니어|infrastructure\s*(engineer|엔지니어)|"
+            r"클라우드\s*엔지니어|"
+            r"플랫폼\s*엔지니어|platform\s*(engineer|엔지니어)|"
+            r"시스템\s*엔지니어)",
             re.I,
         ),
     ),
     # -----------------------------------------------------------------
     # 데이터 사이언티스트 / ML / AI (보조 규칙)
     # -----------------------------------------------------------------
-    # MLOps, AI 개발자, Applied Scientist는 제목에 프론트엔드·백엔드가 함께 있으면
-    # 그 직무가 우선이므로 가장 마지막에 검사함
+    # MLOps, AI 개발자, AI Agent·Research 엔지니어, Applied Scientist는
+    # 제목에 프론트엔드·백엔드가 함께 있으면 그 직무가 우선이므로 가장 마지막에 검사함
     (
         "data_scientist",
         "데이터 사이언티스트·ML",
         re.compile(
             r"(mlops|ml\s*ops|"
             r"\bai(\s*[/·]\s*ml)?\s*(개발자|developer|engineer|엔지니어(?!링))|"
+            r"ai\s*(research|agent)\s*(engineer|엔지니어|개발자)|ai\s*리서치|"
             r"applied\s*scientist|ai\s*scientist)",
             re.I,
         ),
@@ -254,6 +258,62 @@ def main():
             "AI FM 모델 개발 · MLOps 백엔드/플랫폼 엔지니어",
             "backend",
         ),
+        (
+            "프론트개발자(web, app)",
+            "frontend",
+        ),
+        (
+            "프론트 엔지니어",
+            "frontend",
+        ),
+        (
+            "Lucy Studio Front 개발자 (신입/주니어)",
+            "frontend",
+        ),
+        (
+            "프론트엔트 개발자",
+            "frontend",
+        ),
+        (
+            "Platform Engineer",
+            "backend",
+        ),
+        (
+            "Senior Infrastructure Engineer",
+            "backend",
+        ),
+        (
+            "DevSecOps 리드",
+            "backend",
+        ),
+        (
+            "[AI Work Agent] AI Research Engineer - Post-training",
+            "data_scientist",
+        ),
+        (
+            "사운드AI 리서치 엔지니어 (3년차 이상)",
+            "data_scientist",
+        ),
+        (
+            "AI Agent Engineer (5년이상)",
+            "data_scientist",
+        ),
+        (
+            "[SK inc.(AX)] AI Agent 엔지니어",
+            "data_scientist",
+        ),
+        (
+            "[SK inc.(AX)] AI Agent 개발자",
+            "data_scientist",
+        ),
+        (
+            "Front Office 운영 담당자",
+            "other",
+        ),
+        (
+            "프론트 오피스 운영 담당자",
+            "other",
+        ),
     ]
 
     print("=" * 64)
@@ -381,4 +441,11 @@ if __name__ == "__main__":
 # FE/BE 약어, MLOps, AI 개발자, Applied Scientist 표기가 other로 빠지던 문제를 규칙 추가로 해결함
 # MLOps·AI 개발자·Applied Scientist는 제목에 프론트엔드·백엔드가 함께 있으면 그 직무를 우선하도록 마지막 보조 규칙으로 둠
 # 실제 DB 집계에 fullstack을 추가하고, 분류 건수의 합이 전체와 다르면 에러를 내도록 검증을 추가함
-# 자체 테스트 8개 → 20개로 늘려 모두 통과함
+
+# other 521건 중 무작위 50건을 직접 라벨링해 분석 대상이었어야 하는데 빠진 공고 비율을 확인함 (12건, 24%)
+# 프론트개발자·프론트 엔지니어·Front 개발자·프론트엔트(오타), Platform·Infrastructure Engineer, DevSecOps,
+# AI Research·Agent Engineer(개발자), AI 리서치 표기를 규칙에 추가함
+# 추가 후 other를 다시 무작위 50건 뽑아 확인하니 규칙으로 잡을 수 있는 누락은 3건(6%)으로 줄어듦
+# 데이터 아키텍트, 모바일 엔지니어, AI 애플리케이션 개발자처럼 직무 범위가 애매한 표기는 오탐을 막기 위해 추가하지 않음
+
+# 자체 테스트 8개 → 34개로 늘려 모두 통과함
