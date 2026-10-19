@@ -208,6 +208,8 @@ SQL의 등장률은 Python보다 약 22.5%p 높았습니다. 같은 공고 안�
 python -m pip install -r requirements.txt
 ```
 
+Python 3.14.6(Windows 11)에서 검증했고, 라이브러리는 결과를 만들 때 사용한 버전으로 고정했습니다. 다른 Python 버전에서는 고정한 버전을 설치하지 못할 수 있습니다.
+
 ### 8.2 데이터 수집
 
 원티드 채용공고 데이터를 수집합니다.
@@ -249,7 +251,7 @@ python analysis/a5_insights.py
 
 ### 8.4 재현성 관련 주의사항
 
-같은 CSV로 `python run_all.py`를 두 번 실행해 `models/`와 `outputs/`의 결과 파일이 모두 동일한지 확인했습니다. 워드클라우드의 단어 배치는 `random_state`를 고정해 재현되도록 했습니다.
+같은 CSV로 `python run_all.py`를 두 번 실행해 `models/`와 `outputs/`의 결과 파일이 모두 동일한지 확인했습니다. 새 가상환경에서 `requirements.txt`로 설치한 뒤 실행해도 결과 파일이 모두 동일했습니다. 워드클라우드의 단어 배치는 `random_state`를 고정해 재현되도록 했습니다.
 
 다만 외부 API의 접근 정책이나 채용공고 내용은 변경될 수 있으므로 새로 수집한 데이터에서는 동일한 결과가 나오지 않을 수 있습니다. 또한 원본 데이터와 SQLite 데이터베이스는 GitHub에 공개하지 않으므로, 분석을 재현하려면 데이터 수집 과정을 먼저 수행해야 합니다.
 

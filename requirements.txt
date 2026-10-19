@@ -1,8 +1,10 @@
+# Verified with Python 3.14.6 on Windows 11 (python run_all.py completes successfully).
+# Pinned to the exact versions used for the reported results.
 
-pandas
-numpy
-matplotlib
-requests
-networkx
-wordcloud
-scipy
+pandas==3.0.5
+numpy==2.5.2
+matplotlib==3.11.1
+scipy==1.18.1
+networkx==3.6.1
+wordcloud==1.9.6
+requests==2.34.2
