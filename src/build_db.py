@@ -52,7 +52,21 @@ def load_csv():
     # drop_duplicates() : 데이터프레임에서 중복된 행 제거
     df = df.drop_duplicates(subset=["job_id"], keep="last").copy()
 
-    return df, rows_in, duplicated_count
+    # 같은 회사가 같은 제목으로 다시 올린 공고(job_id만 다름)는 가장 최근 공고(job_id가 큰 쪽)만 남김
+    df = df.sort_values("job_id").reset_index(drop=True)
+
+    repost_mask = df.duplicated(subset=["company", "position"], keep="last")
+    repost_count = int(repost_mask.sum())
+
+    if repost_count:
+        print(f"[중복] 회사+제목이 같은 재게시 공고 {repost_count}건 제거 (최신 job_id 유지)")
+
+        for _, row in df[repost_mask].iterrows():
+            print(f"  - 제거 job_id={row['job_id']} | {row['company']} | {row['position']}")
+
+    df = df[~repost_mask].copy()
+
+    return df, rows_in, duplicated_count, repost_count
 
 
 # =====================================================================
@@ -171,10 +185,11 @@ def main():
     # CSV 로드 + 중복 확인
     # -------------------------------------------------------------
 
-    df, rows_in, duplicate_count = load_csv()
+    df, rows_in, duplicate_count, repost_count = load_csv()
 
     print(
-        f"CSV로드: {rows_in:,}행 (job_id 중복 {duplicate_count:,}건 제거 → {len(df):,}행)"
+        f"CSV로드: {rows_in:,}행 (job_id 중복 {duplicate_count:,}건, "
+        f"회사+제목 재게시 {repost_count:,}건 제거 → {len(df):,}행)"
     )
 
     # -------------------------------------------------------------
@@ -185,6 +200,17 @@ def main():
 
     try:
         inserted, updated = upsert_jobs(con, df)
+
+        # UPSERT는 행을 지우지 못하므로, 이번 적재 대상이 아닌 기존 행(이전 실행의 재게시 공고 등)은 삭제
+        keep_ids = [int(j) for j in df["job_id"]]
+        placeholders = ",".join("?" * len(keep_ids))
+        pruned = con.execute(
+            f"DELETE FROM jobs WHERE job_id NOT IN ({placeholders})", keep_ids
+        ).rowcount
+        con.commit()
+
+        if pruned:
+            print(f"정리: 이번 적재 대상이 아닌 기존 행 {pruned:,}건 삭제")
 
         # 현재 DB 전체 행 수
         total = con.execute(
@@ -219,23 +245,8 @@ if __name__ == "__main__":
     main()
 
 
-# ================================================================
-# 원티드 채용공고 CSV → SQLite 적재
-# ================================================================
-# CSV로드: 1,273행 (job_id 중복 0건 제거 → 1,273행)
-# 적재: 신규 1,273 / 갱신 0 → DB 총 1,273행
-
-# [품질] DB 전체 공고: 1,273건
-# [품질] requirements 빈 공고: 0건 (0.0%)
-# [품질] 수집 카테고리 분포: {'백엔드개발자': 371, '프론트엔드개발자': 332, '데이터엔지니어': 316, '데이터사이언티스트': 139, '데이터분석가': 115}
-# [품질] annual_from 범위: 0 ~ 20
-
-# DB 저장 완료: C:\Users\swrkd\Desktop\job-posting-tech-analysis\data\jobs.db
-
-
-# 재실행 이후에도 DB 총 개수가 1,273행 인 것을 확인
-
-
+# =====================================================================
+# [구현 핵심]
 # =====================================================================
 
 # wanted_jobs.csv를 불러와 SQLite jobs.db에 적재함
@@ -249,3 +260,13 @@ if __name__ == "__main__":
 # build_log에 실행 시각, 입력 행 수, 신규/갱신 건수를 기록함
 
 # 적재 후 DB 전체 공고 수, requirements 결측 비율, 카테고리별 공고 수, annual_from 범위로 데이터 확인
+
+
+# =====================================================================
+# [수정 사항]
+# =====================================================================
+
+# 같은 회사가 같은 제목으로 다시 올린 공고(job_id만 다름) 6건이 있어 중복 기준에 company + position을 추가함
+# job_id가 큰 최신 공고만 남기고, 제거한 공고의 job_id/회사/제목을 출력함
+# UPSERT는 행을 삭제하지 못하므로 적재 대상이 아닌 기존 DB 행을 삭제하는 정리 단계를 추가함
+# 수정 후 1,273행 → 1,267행이 되었고, 재실행 이후에도 DB 총 개수가 1,267행인 것을 확인함
