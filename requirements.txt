@@ -5,3 +5,4 @@ matplotlib
 requests
 networkx
 wordcloud
+scipy

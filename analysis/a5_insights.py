@@ -1,8 +1,54 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from scipy import stats
 
 import _common as C
+
+
+# =====================================================================
+# 0. 통계 함수
+# =====================================================================
+
+
+def wilson_interval(count, total):
+    """
+    비율(count / total)의 Wilson 95% 신뢰구간을 %로 반환한다.
+    """
+
+    result = stats.binomtest(int(count), int(total)).proportion_ci(
+        confidence_level=0.95,
+        method="wilson",
+    )
+
+    return result.low * 100, result.high * 100
+
+
+def mcnemar_exact_p(only_first, only_second):
+    """
+    같은 공고 안에서 두 기술을 짝지어 비교하는 McNemar 정확검정의 p값을 반환한다.
+    두 기술 중 하나만 등장한 공고가 어느 쪽이든 같은 확률로 나온다는 가정을 이항검정으로 확인한다.
+    """
+
+    discordant = int(only_first) + int(only_second)
+
+    if discordant == 0:
+        return 1.0
+
+    result = stats.binomtest(
+        int(min(only_first, only_second)),
+        discordant,
+        0.5,
+    )
+
+    return result.pvalue
+
+
+def format_p(p_value):
+    if p_value < 0.001:
+        return "p < 0.001"
+
+    return f"p = {p_value:.3f}"
 
 
 # =====================================================================
@@ -29,20 +75,47 @@ def main():
     print("\n[발견 1] 데이터 분석가: SQL vs Python")
 
     da = tf.loc["data_analyst"]
+    da_jobs = mat[mat["role"] == "data_analyst"]
+    da_count = len(da_jobs)
+
+    sql_low, sql_high = wilson_interval((da_jobs["SQL"] == 1).sum(), da_count)
+    python_low, python_high = wilson_interval((da_jobs["Python"] == 1).sum(), da_count)
 
     print(
-        f"SQL {da['SQL']:.0f}% / "
-        f"Python {da['Python']:.0f}% "
-        f"(차이 {da['SQL'] - da['Python']:+.0f}%p)"
+        f"SQL {da['SQL']:.0f}% (95% 신뢰구간 {sql_low:.0f}~{sql_high:.0f}%) / "
+        f"Python {da['Python']:.0f}% (95% 신뢰구간 {python_low:.0f}~{python_high:.0f}%) "
+        f"(차이 {da['SQL'] - da['Python']:+.0f}%p, n={da_count})"
     )
 
-    print("\n[직무별 SQL / Python 등장률]")
+    # 같은 공고 안에서 SQL과 Python을 짝지어 비교
+    only_sql = int(((da_jobs["SQL"] == 1) & (da_jobs["Python"] == 0)).sum())
+    only_python = int(((da_jobs["SQL"] == 0) & (da_jobs["Python"] == 1)).sum())
+    both = int(((da_jobs["SQL"] == 1) & (da_jobs["Python"] == 1)).sum())
+    neither = int(((da_jobs["SQL"] == 0) & (da_jobs["Python"] == 0)).sum())
+
+    print(
+        f"같은 공고 안 비교: SQL만 {only_sql}건 / Python만 {only_python}건 / "
+        f"둘 다 {both}건 / 둘 다 없음 {neither}건"
+    )
+
+    print(f"McNemar 정확검정: {format_p(mcnemar_exact_p(only_sql, only_python))}")
+
+    print("\n[직무별 SQL / Python 등장률 (95% 신뢰구간)]")
 
     for role in C.ROLE_ORDER:
+        role_jobs = mat[mat["role"] == role]
+        role_count = len(role_jobs)
+
+        sql_low, sql_high = wilson_interval((role_jobs["SQL"] == 1).sum(), role_count)
+        python_low, python_high = wilson_interval(
+            (role_jobs["Python"] == 1).sum(), role_count
+        )
+
         print(
             f"{C.ROLE_KO[role]}: "
-            f"SQL {tf.loc[role, 'SQL']:.0f}% / "
-            f"Python {tf.loc[role, 'Python']:.0f}%"
+            f"SQL {tf.loc[role, 'SQL']:.0f}% ({sql_low:.0f}~{sql_high:.0f}%) / "
+            f"Python {tf.loc[role, 'Python']:.0f}% ({python_low:.0f}~{python_high:.0f}%) "
+            f"(n={role_count})"
         )
 
     # =================================================================
@@ -51,12 +124,16 @@ def main():
 
     print("\n[발견 2] LLM의 직무별 확산")
 
-    print("\n[직무별 LLM / RAG 등장률]")
+    print("\n[직무별 LLM / RAG 등장률 (LLM은 95% 신뢰구간)]")
 
     for role in C.ROLE_ORDER:
+        role_jobs = mat[mat["role"] == role]
+
+        llm_low, llm_high = wilson_interval((role_jobs["LLM"] == 1).sum(), len(role_jobs))
+
         print(
             f"{C.ROLE_KO[role]}: "
-            f"LLM {tf.loc[role, 'LLM']:.0f}% / "
+            f"LLM {tf.loc[role, 'LLM']:.0f}% ({llm_low:.0f}~{llm_high:.0f}%) / "
             f"RAG {tf.loc[role, 'RAG']:.0f}%"
         )
 
@@ -68,6 +145,22 @@ def main():
         count = (llm_jobs["role"] == role).sum()
 
         print(f"{C.ROLE_KO[role]}: {count}건")
+
+    # 데이터 사이언티스트 분류 규칙에 제목의 llm이 포함되어 있어서
+    # 제목에 LLM이 있는 공고는 분류 단계에서 이미 LLM이 반영된 공고임
+    ds_llm_jobs = llm_jobs[llm_jobs["role"] == "data_scientist"]
+    positions = sub.set_index("job_id")["position"]
+
+    title_llm_count = 0
+
+    for job_id in ds_llm_jobs.index:
+        if "llm" in str(positions[job_id]).lower():
+            title_llm_count += 1
+
+    print(
+        f"\n데이터 사이언티스트 LLM 공고 {len(ds_llm_jobs)}건 중 "
+        f"{title_llm_count}건은 제목에 LLM이 있어 직무 분류 단계에서 이미 LLM이 반영됨"
+    )
 
     # =================================================================
     # 4. 발견 3 — 경력대별 요구 스킬 수
@@ -103,7 +196,7 @@ def main():
     g = (
         sub2.groupby("exp_band")["n_skills"]
         # agg()를 사용해 각 그룹에 세 가지 통계를 한 번에 계산
-        .agg(["mean", "median", "count"])
+        .agg(["mean", "median", "std", "count"])
         .reindex(["신입~1년", "2~4년", "5년+", "미상"])
         .dropna(subset=["count"])
     )
@@ -115,9 +208,25 @@ def main():
         print(
             f"{exp_band}: "
             f"평균 {row['mean']:.1f}개 / "
-            f"중앙값 {row['median']:.0f}개 "
+            f"중앙값 {row['median']:.0f}개 / "
+            f"표준편차 {row['std']:.1f}개 "
             f"(n={int(row['count'])})"
         )
+
+    # 경력 구간 3개(미상 제외)의 공고당 스킬 수 분포가 서로 다른지 Kruskal-Wallis 검정으로 확인
+    groups = []
+
+    for exp_band in ["신입~1년", "2~4년", "5년+"]:
+        groups.append(sub2[sub2["exp_band"] == exp_band]["n_skills"].values)
+
+    h_value, kruskal_p = stats.kruskal(*groups)
+
+    print(f"\nKruskal-Wallis 검정 (미상 제외): H = {h_value:.2f}, {format_p(kruskal_p)}")
+
+    if kruskal_p < 0.05:
+        print("→ 경력 구간별 요구 스킬 수에 통계적으로 유의한 차이가 있음")
+    else:
+        print("→ 경력 구간별 요구 스킬 수에 통계적으로 유의한 차이는 없음")
 
     # =================================================================
     # 5. 발견 4 — 직무 간 코사인 유사도
@@ -265,55 +374,9 @@ if __name__ == "__main__":
     main()
 
 
-# ========================================================================
-# a5 — 반직관 발견
-# ========================================================================
-
-# [발견 1] 데이터 분석가: SQL vs Python
-# SQL 83% / Python 61% (차이 +23%p)
-
-# [직무별 SQL / Python 등장률]
-# 데이터 분석가: SQL 83% / Python 61%
-# 데이터 엔지니어: SQL 63% / Python 69%
-# 데이터 사이언티스트: SQL 23% / Python 74%
-# 백엔드: SQL 8% / Python 40%
-# 프론트엔드: SQL 5% / Python 4%
-
-# [발견 2] LLM의 직무별 확산
-
-# [직무별 LLM / RAG 등장률]
-# 데이터 분석가: LLM 7% / RAG 3%
-# 데이터 엔지니어: LLM 30% / RAG 19%
-# 데이터 사이언티스트: LLM 56% / RAG 28%
-# 백엔드: LLM 25% / RAG 10%
-# 프론트엔드: LLM 19% / RAG 2%
-
-# LLM 요구 공고 총 202건
-# 데이터 분석가: 5건
-# 데이터 엔지니어: 28건
-# 데이터 사이언티스트: 68건
-# 백엔드: 73건
-# 프론트엔드: 28건
-
-# [발견 3] 경력대별 요구 스킬 수
-# 신입~1년: 평균 7.0개 / 중앙값 6개 (n=144)
-# 2~4년: 평균 7.5개 / 중앙값 7개 (n=297)
-# 5년+: 평균 7.7개 / 중앙값 7개 (n=277)
-# 미상: 평균 7.5개 / 중앙값 8개 (n=6)
-
-# [발견 4] 직무 간 스킬 프로필 유사도
-#                 data_analyst  data_engineer  data_scientist  backend  frontend
-# data_analyst            1.00           0.65            0.55     0.29      0.10
-# data_engineer           0.65           1.00            0.65     0.64      0.20
-# data_scientist          0.55           0.65            1.00     0.54      0.25
-# backend                 0.29           0.64            0.54     1.00      0.60
-# frontend                0.10           0.20            0.25     0.60      1.00
-
-# 데이터 엔지니어 ↔ 데이터 분석가: 0.65
-# 데이터 엔지니어 ↔ 백엔드: 0.64
-
-
-# =================================================================
+# =====================================================================
+# [구현 핵심]
+# =====================================================================
 
 # 앞선 분석에서 추출한 스킬 데이터를 활용해 직무별 기술 요구의 특징을 비교
 # 단순 빈도 분석만으로 알기 어려운 관계를 파악하고자 함
@@ -328,3 +391,14 @@ if __name__ == "__main__":
 
 # 단, 유사도가 높아도 실제 업무 내용이나 요구 숙련도가 같다는 의미는 아님
 # 채용 공고에 명시된 기술을 기준으로 계산한 유사도이기 때문에 관계 해석 참고 지표 정도로 활용
+
+
+# =====================================================================
+# [수정 사항]
+# =====================================================================
+
+# 경력 구간별 공고당 스킬 수의 표준편차(4.0~4.6개)가 구간 평균 차이(0.8개 이내)보다 커서 Kruskal-Wallis 검정을 추가함
+# 데이터 분석가의 SQL과 Python 요구는 같은 공고 안에서 짝지어 비교하는 비교라 McNemar 정확검정을 추가함
+# 직무별 공고 수가 71~227건으로 작아 비율 옆에 Wilson 95% 신뢰구간을 함께 출력함
+# 데이터 사이언티스트 분류 규칙에 제목의 llm이 들어 있어 LLM 공고 중 제목에 LLM이 있는 공고 수를 함께 출력함
+# 통계 함수는 scipy.stats만 사용하고 statsmodels로 같은 값이 나오는 것을 확인함
