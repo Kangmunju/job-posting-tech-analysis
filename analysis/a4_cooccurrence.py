@@ -46,7 +46,7 @@ def main():
     # keep에 저장한 스킬 인덱스 번호를 이용해 다시 실제 스킬 이름을 가져옴
     names = [skill_cols[i] for i in keep]
 
-    # 모든 채용 공고 그대로 유지(724개 공고)
+    # 모든 채용 공고 그대로 유지(분석 대상 공고 전체)
     # 20개 이상 공고에서 등장한 스킬열만 남김(필터를 통과한 스킬)
     Xk = X[:, keep]
 
@@ -247,39 +247,8 @@ if __name__ == "__main__":
     main()
 
 
-# ========================================================================
-# a4 — 함께 요구되는 기술 쌍
-# ========================================================================
-
-# [동시빈도 TOP 12] (같은 공고에 함께 등장한 횟수)
-# TypeScript + React: 184회 (Jaccard 0.692)
-# Python + AWS: 149회 (Jaccard 0.320)
-# AWS + CI/CD: 135회 (Jaccard 0.372)
-# React + Next.js: 128회 (Jaccard 0.516)
-# Python + SQL: 128회 (Jaccard 0.348)
-# AWS + Kubernetes: 124회 (Jaccard 0.341)
-# React + Vue.js: 123회 (Jaccard 0.370)
-# Python + LLM: 114회 (Jaccard 0.280)
-# TypeScript + Next.js: 112회 (Jaccard 0.475)
-# AWS + Docker: 110회 (Jaccard 0.311)
-# TypeScript + Vue.js: 107회 (Jaccard 0.334)
-# Docker + Kubernetes: 102회 (Jaccard 0.395)
-
-# [Jaccard TOP 12] (인기 편향 보정 — 진짜 '세트'로 붙어다니는 조합)
-# Android + iOS: Jaccard 0.815 (22회)
-# TypeScript + React: Jaccard 0.692 (184회)
-# HTML + CSS: Jaccard 0.536 (37회)
-# Jira + Slack: Jaccard 0.529 (36회)
-# React + Next.js: Jaccard 0.516 (128회)
-# GitHub Actions + Git: Jaccard 0.483 (69회)
-# Spring + Spring Boot: Jaccard 0.475 (38회)
-# TypeScript + Next.js: Jaccard 0.475 (112회)
-# Jira + Confluence: Jaccard 0.463 (25회)
-# Java + Spring: Jaccard 0.459 (56회)
-# PyTorch + TensorFlow: Jaccard 0.455 (20회)
-# PyTorch + Deep Learning: Jaccard 0.410 (25회)
-
-
+# =====================================================================
+# [구현 핵심]
 # =====================================================================
 
 # 공고 × 스킬 0/1 매트릭스를 이용해 한 공고에서 함께 요구되는 기술 조합을 분석함
@@ -295,10 +264,20 @@ if __name__ == "__main__":
 # Jaccard = 두 기술이 함께 나온 공고 수 / 두 기술 중 하나라도 나온 공고 수
 # 단순 동시빈도에 존재하는 인기 기술 편향을 보정함
 
-# 실제 데이터에서 Python + AWS는 149회로 동시빈도 2위였지만 Jaccard는 0.320이었음
-# 반면 Android + iOS는 공동출현이 22회뿐이지만 Jaccard 0.815로 가장 강한 결합을 보임
-# TypeScript + React는 184회 / Jaccard 0.692로 빈도와 결합도가 모두 높은 대표적인 스택으로 나타남
+# 실제 데이터에서 Python + AWS는 144회로 동시빈도 2위였지만 Jaccard는 0.316이었음
+# 반면 Android + iOS는 공동출현이 25회뿐이지만 Jaccard 0.926으로 가장 강한 결합을 보임
+# TypeScript + React는 154회 / Jaccard 0.733으로 빈도와 결합도가 모두 높은 대표적인 스택으로 나타남
 
 # Jaccard 0.2 이상인 상위 45개 기술 조합을 이용해 공동출현 네트워크를 생성함
 # 기술을 노드, 기술 간 공동출현 관계를 엣지로 표현하고
 # 노드 크기는 등장 공고 수, 노드 색은 해당 기술을 가장 많이 요구하는 직무를 나타냄
+
+
+# =====================================================================
+# [수정 사항]
+# =====================================================================
+
+# 실행 결과를 코드 아래 주석으로 남기면 코드가 바뀔 때 낡은 값이 남으므로 삭제함
+# 실행 로그는 run_all.py가 outputs/logs/에 파일로 저장함
+
+# 구현 핵심의 Python + AWS, Android + iOS, TypeScript + React 수치를 재실행 결과에 맞게 갱신함

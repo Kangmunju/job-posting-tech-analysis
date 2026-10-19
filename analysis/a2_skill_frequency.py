@@ -132,6 +132,8 @@ def main():
                     colormap="viridis",
                     width=800,
                     height=500,
+                    # 단어 배치가 실행할 때마다 달라지지 않도록 고정
+                    random_state=42,
                 ).generate_from_frequencies(freqs)
 
                 axes[index].imshow(
@@ -168,26 +170,8 @@ if __name__ == "__main__":
     main()
 
 
-# ========================================================================
-# a2 — 직무별 상위 요구 기술 (등장률 = 그 직무 공고 중 %)
-# ========================================================================
-
-# [데이터 분석가] n=71
-#  SQL 83%, Python 61%, Tableau 42%, A/B Test 37%, BigQuery 24%, Airflow 16%, Looker 13%, Power BI 13%, R 11%, dbt 11%, Vue.js 11%, AWS 10%
-
-# [데이터 엔지니어] n=94
-#  Python 69%, SQL 63%, AWS 57%, Airflow 51%, Spark 48%, Kafka 45%, Kubernetes 33%, dbt 31%, LLM 30%, Snowflake 24%, Java 22%, GCP 22%
-
-# [데이터 사이언티스트] n=122
-#  Python 74%, LLM 56%, Machine Learning 38%, Deep Learning 32%, PyTorch 30%, RAG 28%, AWS 25%, SQL 23%, GCP 16%, Docker 16%, Computer Vision 16%, Vue.js 15%
-
-# [백엔드] n=287
-#  AWS 58%, Kubernetes 48%, CI/CD 45%, Python 40%, Docker 38%, Vue.js 32%, React 30%, Git 30%, TypeScript 26%, LLM 25%, Java 25%, Terraform 25%
-
-# [프론트엔드] n=150
-#  React 95%, TypeScript 83%, Vue.js 59%, Next.js 54%, JavaScript 39%, CSS 33%, CI/CD 31%, Git 26%, AWS 25%, REST API 25%, React Native 24%, HTML 20%
-
-
+# =====================================================================
+# [구현 핵심]
 # =====================================================================
 
 # 공고 × 스킬 0/1 매트릭스를 직무별로 묶어 평균 × 100으로 스킬 등장률(%)을 계산함
@@ -197,3 +181,13 @@ if __name__ == "__main__":
 # 전체 등장률 결과를 skill_freq_by_role.csv로 저장함
 # 전체 상위 기술의 직무별 등장률을 그룹 막대그래프를 생성해 비교함
 # 직무별 등장률을 가중치로 사용해 워드클라우드를 생성함
+
+
+# =====================================================================
+# [수정 사항]
+# =====================================================================
+
+# 실행 결과를 코드 아래 주석으로 남기면 코드가 바뀔 때 낡은 값이 남으므로 삭제함
+# 실행 로그는 run_all.py가 outputs/logs/에 파일로 저장함
+
+# 워드클라우드 단어 배치가 실행할 때마다 달라져 같은 데이터로도 그림이 바뀌므로 random_state를 고정함
