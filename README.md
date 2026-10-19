@@ -7,7 +7,7 @@
 |:---:|:---:|:---:|
 | 1,273건 / 705건 | 83% (Python 61%) | 196건 / 705건 |
 
-**[내 기술로 확인해 보기 (웹 앱)](https://job-posting-tech-analysis.streamlit.app/)** · [분석 보고서](reports/analysis_report.md) · [주요 인사이트](reports/FINDINGS.md)
+**[내 기술로 확인해 보기 (웹 앱)](https://job-posting-tech-analysis.streamlit.app/)** · **[스토리 페이지](https://kangmunju.github.io/job-posting-tech-analysis/docs/story.html)** · [분석 보고서](reports/analysis_report.md) · [주요 인사이트](reports/FINDINGS.md)
 
 내가 쓸 수 있는 기술을 고르면 직무별 매칭 점수와 다음에 배우면 좋은 기술을 보여 줍니다. 분석 결과를 그대로 쓰며 예측 모델은 아닙니다.
 
@@ -128,7 +128,7 @@ TF-IDF는 직무 5개를 비교 단위로 계산해서 결과가 등장률 순�
 
 ![기술 공동출현 네트워크](outputs/figures/pc_a4_network.png)
 
-네트워크 그래프는 채용공고에서 함께 요구되는 기술 간의 관계를 나타냅니다. 노드는 개별 기술을, 연결선은 두 기술의 공동출현 관계를 의미합니다.
+네트워크 그래프는 채용공고에서 함께 요구되는 기술 간의 관계를 나타냅니다. 노드는 개별 기술(크기는 등장 공고 수, 색은 그 기술을 가장 많이 요구하는 직무), 연결선은 두 기술의 공동출현 관계(굵을수록 Jaccard가 높음)를 의미합니다.
 
 ## 4. 주요 인사이트
 
