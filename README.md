@@ -7,6 +7,10 @@
 |:---:|:---:|:---:|
 | 1,273건 / 705건 | 83% (Python 61%) | 196건 / 705건 |
 
+**[내 기술로 확인해 보기 (웹 앱)](https://job-posting-tech-analysis.streamlit.app/)** · [분석 보고서](reports/analysis_report.md) · [주요 인사이트](reports/FINDINGS.md)
+
+내가 쓸 수 있는 기술을 고르면 직무별 매칭 점수와 다음에 배우면 좋은 기술을 보여 줍니다. 분석 결과를 그대로 쓰며 예측 모델은 아닙니다.
+
 ---
 
 ## 프로젝트 요약
