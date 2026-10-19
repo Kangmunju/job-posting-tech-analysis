@@ -31,6 +31,17 @@ STEPS = [
     ("analysis/a5_insights.py", "a5_insights.txt"),
 ]
 
+# 원본 데이터가 없는 환경(저장소를 새로 받은 경우)에서 실행할 단계
+# 원본 데이터 없이 실행할 수 있는 자체 테스트만 포함함
+TEST_ONLY_STEPS = [
+    ("src/skills.py", "skills.txt"),
+    ("src/preprocess.py", "preprocess.txt"),
+    ("src/classify.py", "classify.txt"),
+]
+
+# 전체 분석에 필요한 원본 채용공고 CSV (저장소에는 공개하지 않음)
+RAW_CSV = ROOT / "data" / "raw" / "wanted_jobs.csv"
+
 # 실행 환경 로그에 버전을 기록할 패키지
 PACKAGES = [
     "pandas",
@@ -98,9 +109,10 @@ def save_environment_log():
 # =====================================================================
 
 
-def run_step(script: str, log_name: str) -> int:
+def run_step(script: str, log_name: str, save: bool = True) -> int:
     """
     파일 하나를 실행하고 출력 내용을 로그 파일로 저장한다. 종료 코드를 반환한다.
+    save가 False이면 로그를 저장하지 않는다. (저장소에 이미 들어 있는 로그를 덮어쓰지 않기 위함)
     """
 
     env = os.environ.copy()
@@ -124,7 +136,8 @@ def run_step(script: str, log_name: str) -> int:
     if result.stderr.strip():
         log_text += "\n[stderr]\n" + result.stderr
 
-    save_log(log_name, log_text)
+    if save:
+        save_log(log_name, log_text)
 
     if result.returncode != 0:
         print(result.stderr)
@@ -137,10 +150,41 @@ def run_step(script: str, log_name: str) -> int:
 # =====================================================================
 
 
+def run_tests_only():
+    """
+    원본 데이터가 없을 때 자체 테스트만 실행하고, 결과 파일은 만들지 않는다.
+    """
+
+    print("원본 채용공고 CSV(data/raw/wanted_jobs.csv)가 없습니다.")
+    print("이 저장소는 원본 데이터를 공개하지 않으므로 전체 분석은 실행할 수 없고,")
+    print("데이터 없이 실행할 수 있는 자체 테스트만 실행합니다.")
+    print("분석 결과(models/, outputs/)와 실행 로그(outputs/logs/)는 저장소에 이미 포함되어 있습니다.")
+    print()
+
+    total = len(TEST_ONLY_STEPS)
+
+    for number, (script, log_name) in enumerate(TEST_ONLY_STEPS, start=1):
+        print(f"[{number}/{total}] {script} ...", flush=True)
+
+        return_code = run_step(script, log_name, save=False)
+
+        if return_code != 0:
+            print(f"실패: {script} (종료 코드 {return_code})")
+            sys.exit(1)
+
+    print()
+    print("자체 테스트가 모두 통과했습니다.")
+
+
 def main():
     print("=" * 64)
     print("전체 분석 실행")
     print("=" * 64)
+
+    # 원본 데이터가 없으면 오류로 멈추지 않고 자체 테스트만 실행함
+    if not RAW_CSV.exists():
+        run_tests_only()
+        return
 
     save_environment_log()
 
@@ -175,4 +219,13 @@ if __name__ == "__main__":
 
 # 하나라도 실패하면 이후 단계를 실행하지 않고 멈춤
 # 자체 테스트를 가장 먼저 실행해 기술 사전이나 분류 규칙의 문제를 분석 전에 발견하도록 함
-# 원티드 API를 호출하는 collect_wanted.py는 포함하지 않았고, 수집은 따로 실행해야 함
+# 원티드 API를 호출하는 collect_wanted.py는 포함하지 않았음
+
+
+# =====================================================================
+# [수정 사항]
+# =====================================================================
+
+# 원본 데이터를 공개하지 않으므로 저장소를 새로 받은 환경에서는 DB 적재 단계에서 오류가 났음
+# 원본 CSV가 없으면 오류로 멈추지 않고, 데이터 없이 실행할 수 있는 자체 테스트 3개만 실행하도록 바꿈
+# 이때는 저장소에 이미 들어 있는 로그를 덮어쓰지 않도록 로그를 저장하지 않음

@@ -1,6 +1,8 @@
 # Dependencies for the Streamlit app only (analysis dependencies are in the root requirements.txt).
-# Lower bounds only, so that Streamlit Community Cloud can pick a compatible Python and versions.
+# Ranges (lower bound and next major version) so that Streamlit Community Cloud can pick a compatible
+# Python and versions, while a future major release cannot silently break the app.
+# Tested with streamlit 1.63.0, altair 6.2.2, pandas 3.0.5.
 
-streamlit>=1.50
-altair>=5
-pandas>=2.0
+streamlit>=1.50,<2
+altair>=5,<7
+pandas>=2,<4

@@ -24,7 +24,8 @@ CSV_PATH = ROOT / "data" / "raw" / "wanted_jobs.csv"
 def load_csv():
     if not CSV_PATH.exists():
         raise FileNotFoundError(
-            f"원본 CSV를 찾을 수 없습니다: {CSV_PATH}\n 먼저 src/collect_wanted.py를 실행하세요"
+            f"원본 CSV를 찾을 수 없습니다: {CSV_PATH}\n"
+            " 이 저장소는 원본 채용공고를 공개하지 않습니다. README의 8.2 ~ 8.4를 참고하세요."
         )
 
     df = pd.read_csv(CSV_PATH)
@@ -61,8 +62,9 @@ def load_csv():
     if repost_count:
         print(f"[중복] 회사+제목이 같은 재게시 공고 {repost_count}건 제거 (최신 job_id 유지)")
 
+        # 공개 로그에 외부 공고의 회사명과 제목이 남지 않도록 job_id만 출력함
         for _, row in df[repost_mask].iterrows():
-            print(f"  - 제거 job_id={row['job_id']} | {row['company']} | {row['position']}")
+            print(f"  - 제거 job_id={row['job_id']}")
 
     df = df[~repost_mask].copy()
 
@@ -267,6 +269,8 @@ if __name__ == "__main__":
 # =====================================================================
 
 # 같은 회사가 같은 제목으로 다시 올린 공고(job_id만 다름) 6건이 있어 중복 기준에 company + position을 추가함
-# job_id가 큰 최신 공고만 남기고, 제거한 공고의 job_id/회사/제목을 출력함
+# job_id가 큰 최신 공고만 남기고, 제거한 공고의 job_id를 출력함 (공개 로그에 외부 공고의 회사명과 제목을 남기지 않기 위해 job_id만 출력)
 # UPSERT는 행을 삭제하지 못하므로 적재 대상이 아닌 기존 DB 행을 삭제하는 정리 단계를 추가함
 # 수정 후 1,273행 → 1,267행이 되었고, 재실행 이후에도 DB 총 개수가 1,267행인 것을 확인함
+
+# 원본 CSV가 없을 때 안내 문구가 재수집을 권하던 것을 원본을 공개하지 않는다는 안내로 바꿈

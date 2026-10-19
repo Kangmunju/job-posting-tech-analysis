@@ -2,12 +2,12 @@
 원티드 채용공고 CSV → SQLite 적재
 ================================================================
 [중복] 회사+제목이 같은 재게시 공고 6건 제거 (최신 job_id 유지)
-  - 제거 job_id=290982 | 앰버로드 | Data Scientist
-  - 제거 job_id=326794 | 페이타랩(패스오더) | [병역특례] 데이터 엔지니어 (Growth Data Engineer), 서울
-  - 제거 job_id=356257 | 아타드(ATAD) | 프론트엔드 개발자
-  - 제거 job_id=365242 | 빗썸 | Data Engineer
-  - 제거 job_id=365645 | 씨제이올리브영(CJ올리브영) | Data Scientist (광고)
-  - 제거 job_id=382210 | 아마존(Amazon) | Data Center Operation Engineer, DCO (Data Center Operations)
+  - 제거 job_id=290982
+  - 제거 job_id=326794
+  - 제거 job_id=356257
+  - 제거 job_id=365242
+  - 제거 job_id=365645
+  - 제거 job_id=382210
 CSV로드: 1,273행 (job_id 중복 0건, 회사+제목 재게시 6건 제거 → 1,267행)
 적재: 신규 0 / 갱신 1,267 → DB 총 1,267행
 
