@@ -9,12 +9,24 @@ import re
 # (직무 라벨, 표시 이름, 제목 매칭 정규식)
 #
 # 위에서부터 순서대로 검사하고 처음 일치한 직무로 확정함
-# 구체적인 직무를 먼저 검사하고 범위가 넓은 백엔드는 마지막에 검사함
+# 풀스택은 프론트엔드와 백엔드가 섞인 직무라서 가장 먼저 검사해 분석 대상에서 분리함
+# 그 다음 구체적인 직무를 먼저 검사하고 범위가 넓은 백엔드는 마지막에 검사함
 
 # 하나의 규칙이 3개짜리 튜플(문자열 + 문자열 + 정규식)
 # 그러한 튜플이 여러 개 들어있는 리스트 형태로 묶어줌
 # 분류할 때 사용할 기준표를 미리 만들어 두었음
 RULES: list[tuple[str, str, re.Pattern]] = [
+    # -----------------------------------------------------------------
+    # 풀스택 (분석 대상 5개 직무에는 포함하지 않음)
+    # -----------------------------------------------------------------
+    (
+        "fullstack",
+        "풀스택 개발자",
+        re.compile(
+            r"(풀\s*스택|full\s*stack)",
+            re.I,
+        ),
+    ),
     # -----------------------------------------------------------------
     # 데이터 엔지니어
     # -----------------------------------------------------------------
@@ -67,6 +79,7 @@ RULES: list[tuple[str, str, re.Pattern]] = [
         "프론트엔드 개발자",
         re.compile(
             r"(프론트\s*엔드|front\s*end|frontend|"
+            r"(?<![A-Za-z])fe(?![A-Za-z])|"
             r"퍼블리셔|웹\s*퍼블|"
             r"\bui\s*개발|react\s*개발|vue\s*개발|"
             r"웹\s*개발자|web\s*(개발|front))",
@@ -81,16 +94,31 @@ RULES: list[tuple[str, str, re.Pattern]] = [
         "백엔드 개발자",
         re.compile(
             r"(백\s*엔드|back\s*end|backend|"
+            r"(?<![A-Za-z])be(?![A-Za-z])|"
             r"서버\s*개발|server\s*(dev|engineer)|"
             r"api\s*개발|플랫폼\s*개발자|"
             r"java\s*개발|python\s*개발|node\s*개발|"
             r"\bgo\s*개발|spring\s*개발|"
-            r"풀\s*스택|full\s*stack|"
             r"devops|데브옵스|"
             r"소프트웨어\s*엔지니어|software\s*engineer|"
             r"앱\s*개발|웹.?앱|"
             r"인프라\s*엔지니어|클라우드\s*엔지니어|"
             r"플랫폼\s*엔지니어|시스템\s*엔지니어)",
+            re.I,
+        ),
+    ),
+    # -----------------------------------------------------------------
+    # 데이터 사이언티스트 / ML / AI (보조 규칙)
+    # -----------------------------------------------------------------
+    # MLOps, AI 개발자, Applied Scientist는 제목에 프론트엔드·백엔드가 함께 있으면
+    # 그 직무가 우선이므로 가장 마지막에 검사함
+    (
+        "data_scientist",
+        "데이터 사이언티스트·ML",
+        re.compile(
+            r"(mlops|ml\s*ops|"
+            r"\bai(\s*[/·]\s*ml)?\s*(개발자|developer|engineer|엔지니어(?!링))|"
+            r"applied\s*scientist|ai\s*scientist)",
             re.I,
         ),
     ),
@@ -178,6 +206,54 @@ def main():
             "Data Analytics Engineer",
             "data_analyst",
         ),
+        (
+            "FE 개발자 3년 이상",
+            "frontend",
+        ),
+        (
+            "[인턴] BE Engineer (전환형)",
+            "backend",
+        ),
+        (
+            "Senior MLOps 엔지니어",
+            "data_scientist",
+        ),
+        (
+            "AI 개발자 팀원/팀장 (사원~과장)",
+            "data_scientist",
+        ),
+        (
+            "Applied Scientist (Agent)",
+            "data_scientist",
+        ),
+        (
+            "풀스택 개발자 (React / Node.js)",
+            "fullstack",
+        ),
+        (
+            "[팀 스케일업] AI 풀스택 개발자 (LLM 파이프라인)",
+            "fullstack",
+        ),
+        (
+            "주니어 프론트엔드 (풀스택 성장형) 개발자",
+            "fullstack",
+        ),
+        (
+            "AI·엔지니어링 총괄 (Head of AI & Engineering)",
+            "other",
+        ),
+        (
+            "AI Tutor - Arabic",
+            "other",
+        ),
+        (
+            "Frontend Engineer (MLOps, Vision AI Platform)",
+            "frontend",
+        ),
+        (
+            "AI FM 모델 개발 · MLOps 백엔드/플랫폼 엔지니어",
+            "backend",
+        ),
     ]
 
     print("=" * 64)
@@ -237,6 +313,7 @@ def main():
         "data_scientist": 0,
         "backend": 0,
         "frontend": 0,
+        "fullstack": 0,
         "other": 0,
     }
 
@@ -255,6 +332,10 @@ def main():
 
     total = len(rows)
 
+    # 분석 대상 + 풀스택 + other가 전체와 같아야 함 (분류 누락·중복 방지)
+    if analysis_total + counts["fullstack"] + counts["other"] != total:
+        raise RuntimeError("직무별 분류 건수의 합이 전체 공고 수와 다릅니다.")
+
     print()
     print("=" * 40)
     print("실제 DB 직무 재분류 결과")
@@ -264,9 +345,10 @@ def main():
     print(f"{'데이터 사이언티스트':<18} {counts['data_scientist']:>6,}건")
     print(f"{'백엔드':<18} {counts['backend']:>6,}건")
     print(f"{'프론트엔드':<18} {counts['frontend']:>6,}건")
-    print(f"{'other':<18} {counts['other']:>6,}건")
     print("-" * 40)
     print(f"{'분석 대상':<18} {analysis_total:>6,}건")
+    print(f"{'풀스택(분석 제외)':<18} {counts['fullstack']:>6,}건")
+    print(f"{'other(분석 제외)':<18} {counts['other']:>6,}건")
     print(f"{'전체':<18} {total:>6,}건")
     print("=" * 40)
 
@@ -275,35 +357,8 @@ if __name__ == "__main__":
     main()
 
 
-# ================================================================
-# 직무 재분류 테스트
-# ================================================================
-# PASS | data_analyst <- [쿠팡] 데이터 분석가 (CRM FP&A) (기대: data_analyst)
-# PASS | data_engineer <- Data Engineer (Growth) (기대: data_engineer)
-# PASS | data_scientist <- LLM 트레이닝 엔지니어(데이터 사이언티스트) (기대: data_scientist)
-# PASS | backend <- [그라운드] 백엔드 개발자 (Backend Developer) (기대: backend)
-# PASS | frontend <- 프론트엔드 엔지니어 (3년 이상/부산) (기대: frontend)
-# PASS | other <- 재무회계담당자 5년이상 팀장급 (기대: other)
-# PASS | data_scientist <- AI Engineer (Edge AI 최적화) (기대: data_scientist)
-# PASS | data_analyst <- Data Analytics Engineer (기대: data_analyst)
-
-# 테스트 결과: 8/8 통과
-
-# ========================================
-# 실제 DB 직무 재분류 결과
-# ========================================
-# 데이터 분석가                71건
-# 데이터 엔지니어               94건
-# 데이터 사이언티스트            122건
-# 백엔드                   287건
-# 프론트엔드                 150건
-# other                 549건
-# ----------------------------------------
-# 분석 대상                 724건
-# 전체                  1,273건
-# ========================================
-
-
+# =====================================================================
+# [구현 핵심]
 # =====================================================================
 
 # 원티드 수집 카테고리를 그대로 사용하지 않고 공고 제목(position)을 기준으로 직무 재분류
@@ -313,3 +368,17 @@ if __name__ == "__main__":
 # 정규식을 이용해 수많은 직무명 표현을 매칭하였음
 # 기타 특수문자들은 공백으로 변환해 표기를 통일함
 # 처음 일치한 직무의 label을 반환하고 5개 직무에 해당하지 않으면 other로 분류함
+
+# 제목에 풀스택이 있으면 프론트엔드가 함께 있어도(예: 프론트엔드 (풀스택 성장형)) 풀스택으로 분류함
+# 성장형 포지션은 결국 풀스택이 되고, 예외 규칙을 두면 규칙이 복잡해져 모순이 생길 수 있어 단순한 기준을 유지함
+
+
+# =====================================================================
+# [수정 사항]
+# =====================================================================
+
+# 풀스택은 프론트엔드·백엔드 기술이 섞이므로 fullstack 라벨을 새로 두고 가장 먼저 검사해 분석 대상에서 제외함
+# FE/BE 약어, MLOps, AI 개발자, Applied Scientist 표기가 other로 빠지던 문제를 규칙 추가로 해결함
+# MLOps·AI 개발자·Applied Scientist는 제목에 프론트엔드·백엔드가 함께 있으면 그 직무를 우선하도록 마지막 보조 규칙으로 둠
+# 실제 DB 집계에 fullstack을 추가하고, 분류 건수의 합이 전체와 다르면 에러를 내도록 검증을 추가함
+# 자체 테스트 8개 → 20개로 늘려 모두 통과함
