@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>채용공고 705건으로 본 직무별 요구 기술</title>
+<meta name="description" content="원티드 채용공고를 직접 수집해 5개 직무의 요구 기술을 분석한 프로젝트. 결과와, 그 숫자를 믿을 수 있게 만든 검증 과정을 정리했습니다.">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --text: #1d1b17;
+    --muted: #6a655b;
+    --border: #e6e1d6;
+    --accent: #d9461f;
+    --accent-soft: #fbe9e3;
+    --bar: #e4572e;
+    --bar-track: #efebe1;
+    --ok: #1f7a4d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15140f;
+      --surface: #1d1b16;
+      --text: #f1eee6;
+      --muted: #a9a396;
+      --border: #34312a;
+      --accent: #ff7a54;
+      --accent-soft: #34221b;
+      --bar: #ff7a54;
+      --bar-track: #2a2720;
+      --ok: #5fc58f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15140f;
+    --surface: #1d1b16;
+    --text: #f1eee6;
+    --muted: #a9a396;
+    --border: #34312a;
+    --accent: #ff7a54;
+    --accent-soft: #34221b;
+    --bar: #ff7a54;
+    --bar-track: #2a2720;
+    --ok: #5fc58f;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  a { color: var(--accent); }
+
+  /* 상단 */
+  header.hero { padding: 72px 0 40px; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 14px; letter-spacing: .04em; }
+  h1 { font-size: clamp(30px, 6vw, 46px); line-height: 1.25; margin: 10px 0 18px; letter-spacing: -.02em; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+  .lead strong { color: var(--text); }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 28px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
+  .stat b { display: block; font-size: 26px; line-height: 1.2; letter-spacing: -.02em; }
+  .stat span { color: var(--muted); font-size: 14px; }
+
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-block; padding: 11px 18px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 15px; border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:hover { filter: brightness(.96); }
+  .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* 본문 */
+  section { padding: 44px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: clamp(23px, 4vw, 30px); line-height: 1.35; margin: 0 0 8px; letter-spacing: -.015em; }
+  .num { color: var(--accent); font-weight: 800; margin-right: 8px; }
+  h3 { font-size: 18px; margin: 28px 0 6px; }
+  p { margin: 0 0 16px; }
+  .sub { color: var(--muted); }
+  code { font-family: inherit; font-weight: 700; background: var(--accent-soft); padding: 1px 6px; border-radius: 5px; font-size: .95em; }
+  .callout code { background: var(--surface); }
+
+  table { width: 100%; border-collapse: collapse; margin: 18px 0 6px; font-size: 15.5px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--accent-soft); font-size: 14px; }
+  tr:last-child td { border-bottom: 0; }
+  td b { color: var(--accent); }
+  .tablewrap { overflow-x: auto; }
+
+  figure { margin: 22px 0 8px; }
+  figure img { width: 100%; height: auto; display: block; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
+  figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; }
+
+  .callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin: 20px 0; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* 막대 */
+  .bars { margin: 18px 0 6px; }
+  .bar-row { display: grid; grid-template-columns: 130px 1fr 190px; align-items: center; gap: 12px; margin: 9px 0; font-size: 15px; }
+  .track { background: var(--bar-track); height: 16px; border-radius: 8px; overflow: hidden; }
+  .fill { background: var(--bar); height: 100%; border-radius: 8px; }
+  .bar-row .val { color: var(--muted); font-size: 13.5px; }
+
+  /* 검증 카드 */
+  .checks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0; }
+  .check { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+  .check h4 { margin: 0 0 6px; font-size: 16px; }
+  .check .big { font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+  .check .big small { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .check p { margin: 8px 0 0; font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+  .arrow { color: var(--accent); margin: 0 4px; }
+
+  ul.tight { padding-left: 20px; margin: 0 0 16px; }
+  ul.tight li { margin: 6px 0; }
+
+  footer { padding: 32px 0 64px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+  footer p { margin: 0 0 8px; }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    header.hero { padding-top: 48px; }
+    .stats { grid-template-columns: 1fr; }
+    .checks { grid-template-columns: 1fr; }
+    .bar-row { grid-template-columns: 96px 1fr; }
+    .bar-row .val { grid-column: 2; margin-top: -4px; }
+    table { font-size: 13px; }
+    th, td { padding: 9px 6px; }
+    th { font-size: 12.5px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">DATA ANALYSIS PROJECT</div>
+    <h1>채용공고 705건으로 본<br>직무별 요구 기술</h1>
+    <p class="lead">데이터 분석가 공고의 <strong>83%는 SQL</strong>을, 프론트엔드 공고의 <strong>94%는 React</strong>를 요구했습니다. 원티드 채용공고를 수집해 5개 직무로 나누고, 기술 90개의 등장률과 조합을 분석했습니다.</p>
+
+    <div class="stats">
+      <div class="stat"><b>1,273 → 705건</b><span>수집 → 분석 대상 공고</span></div>
+      <div class="stat"><b>5개 직무 · 90개 기술</b><span>분석가·엔지니어·사이언티스트·백엔드·프론트엔드</span></div>
+      <div class="stat"><b>71개 테스트 통과</b><span>분류·기술 추출·전처리 자체 테스트</span></div>
+    </div>
+
+    <div class="cta">
+      <a class="btn primary" href="https://job-posting-tech-analysis.streamlit.app/">내 기술로 확인해 보기</a>
+      <a class="btn" href="https://github.com/Kangmunju/job-posting-tech-analysis">GitHub 저장소</a>
+      <a class="btn" href="https://github.com/Kangmunju/job-posting-tech-analysis/blob/main/reports/analysis_report.md">분석 보고서</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="top-skills">
+  <div class="wrap">
+    <h2><span class="num">1</span>직무마다 1위 기술이 달랐습니다</h2>
+    <p class="sub">직무별 공고 중 그 기술이 등장한 비율입니다. 직무별 공고 수가 71~227건으로 달라서 건수가 아니라 비율로 비교했습니다.</p>
+
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>직무</th><th>1위</th><th>2위</th><th>3위</th></tr></thead>
+      <tbody>
+        <tr><td>데이터 분석가</td><td><b>SQL</b> 83%</td><td>Python 61%</td><td>Tableau 42%</td></tr>
+        <tr><td>데이터 엔지니어</td><td><b>Python</b> 70%</td><td>SQL 63%</td><td>AWS 59%</td></tr>
+        <tr><td>데이터 사이언티스트</td><td><b>Python</b> 72%</td><td>LLM 55%</td><td>Machine Learning 34%</td></tr>
+        <tr><td>백엔드</td><td><b>AWS</b> 61%</td><td>Kubernetes 61%</td><td>CI/CD 52%</td></tr>
+        <tr><td>프론트엔드</td><td><b>React</b> 94%</td><td>TypeScript 82%</td><td>Next.js 54%</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <figure>
+      <img src="../outputs/figures/pc_a2_grouped_bar.png" alt="직무별 주요 기술 등장률을 비교한 막대그래프" loading="lazy">
+      <figcaption>같은 기술도 직무에 따라 요구 비율이 크게 다릅니다.</figcaption>
+    </figure>
+
+    <p>데이터 분석가 71건에서 SQL(59건)이 Python(43건)보다 많았고, 같은 공고 안에서 비교해도 SQL만 요구한 공고가 20건, Python만 요구한 공고가 4건이었습니다(McNemar 검정 p = 0.002).</p>
+  </div>
+</section>
+
+<section id="distinctive">
+  <div class="wrap">
+    <h2><span class="num">2</span>Python은 어디에나 있었고, 직무를 구별하는 기술은 따로 있었습니다</h2>
+    <p>처음에는 TF-IDF로 직무를 구별하는 기술을 찾았습니다. 그런데 비교 단위가 직무 5개뿐이라 결과가 등장률 순위를 그대로 따라갔고, 데이터 엔지니어의 1위가 어디에나 있는 Python으로 나왔습니다.</p>
+    <p>그래서 <strong>해당 직무의 등장률에서 다른 직무 공고의 등장률을 뺀 값(%p)</strong>을 직접 계산했습니다. 데이터 엔지니어에서 Python은 7위(+27%p)로 내려갔고, 직무 고유 기술이 드러났습니다.</p>
+
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>직무</th><th>1위</th><th>2위</th><th>3위</th></tr></thead>
+      <tbody>
+        <tr><td>데이터 분석가</td><td><b>SQL</b> +66%p</td><td>Tableau +41%p</td><td>A/B Test +33%p</td></tr>
+        <tr><td>데이터 엔지니어</td><td><b>Airflow</b> +47%p</td><td>SQL +45%p</td><td>Spark +44%p</td></tr>
+        <tr><td>데이터 사이언티스트</td><td><b>LLM</b> +35%p</td><td>Python +33%p</td><td>PyTorch +31%p</td></tr>
+        <tr><td>백엔드</td><td><b>Kubernetes</b> +46%p</td><td>CI/CD +34%p</td><td>AWS +33%p</td></tr>
+        <tr><td>프론트엔드</td><td><b>React</b> +88%p</td><td>TypeScript +74%p</td><td>Next.js +51%p</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <figure>
+      <img src="../outputs/figures/pc_a3_gap_heatmap.png" alt="직무별 고유 기술의 등장률 차이를 나타낸 히트맵" loading="lazy">
+      <figcaption>빨간색은 해당 직무에서 다른 직무보다 더 많이 요구되는 기술, 파란색은 덜 요구되는 기술입니다.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="llm">
+  <div class="wrap">
+    <h2><span class="num">3</span>LLM은 데이터 사이언티스트만의 기술이 아니었습니다</h2>
+    <p>705건 중 196건(28%)에서 LLM이 등장했습니다. 등장률은 데이터 사이언티스트가 가장 높았지만, <strong>LLM이 나온 공고의 57%는 다른 직무</strong>의 공고였습니다.</p>
+
+    <div class="bars" role="list" aria-label="직무별 LLM 등장률">
+      <div class="bar-row" role="listitem"><span>데이터 분석가</span><div class="track"><div class="fill" style="width:7%"></div></div><span class="val">7% (3~15%) · 5건</span></div>
+      <div class="bar-row" role="listitem"><span>데이터 엔지니어</span><div class="track"><div class="fill" style="width:30%"></div></div><span class="val">30% (22~40%) · 28건</span></div>
+      <div class="bar-row" role="listitem"><span>데이터 사이언티스트</span><div class="track"><div class="fill" style="width:55%"></div></div><span class="val">55% (47~62%) · 85건</span></div>
+      <div class="bar-row" role="listitem"><span>백엔드</span><div class="track"><div class="fill" style="width:22%"></div></div><span class="val">22% (17~28%) · 50건</span></div>
+      <div class="bar-row" role="listitem"><span>프론트엔드</span><div class="track"><div class="fill" style="width:18%"></div></div><span class="val">18% (12~24%) · 28건</span></div>
+    </div>
+    <p class="sub" style="font-size:14px">괄호는 Wilson 95% 신뢰구간입니다. 데이터 사이언티스트 분류 규칙에 제목의 <code>LLM</code>이 들어 있어, 해당 직무 LLM 공고 85건 중 16건은 분류 단계에서 이미 반영된 공고입니다.</p>
+  </div>
+</section>
+
+<section id="pairs">
+  <div class="wrap">
+    <h2><span class="num">4</span>기술은 조합으로 요구됩니다</h2>
+    <p>같은 공고에 함께 나오는 정도를 공동출현 횟수와 Jaccard 유사도로 봤습니다. <strong>TypeScript + React</strong>는 154건, Jaccard 0.733으로 빈도와 결합도가 모두 높았고, Android + iOS는 25건뿐이지만 0.926으로 가장 강하게 묶였습니다. Python + AWS는 144건으로 많지만 0.316이라, 각각 여러 공고에 넓게 등장해서 겹친 것으로 보입니다.</p>
+
+    <figure>
+      <img src="../outputs/figures/pc_a4_network.png" alt="Jaccard 유사도 0.2 이상인 기술 조합의 공동출현 네트워크" loading="lazy">
+      <figcaption>노드 크기는 등장 공고 수, 연결선은 함께 요구되는 관계입니다.</figcaption>
+    </figure>
+
+    <p>직무 간 기술 구성의 유사도(코사인)는 데이터 엔지니어가 백엔드와 0.67, 데이터 분석가·데이터 사이언티스트와 각각 0.64로 가장 높았고, 데이터 분석가와 프론트엔드는 0.08로 가장 달랐습니다.</p>
+  </div>
+</section>
+
+<section id="checks">
+  <div class="wrap">
+    <h2><span class="num">5</span>숫자를 믿을 수 있게 만들기 위해 한 일</h2>
+    <p>분석 결과를 처음 만든 뒤, 직무 분류와 기술 추출이 제대로 되었는지 표본으로 확인했습니다. 그 과정에서 결과를 바꾸는 문제를 여러 개 찾아 고치고, 전체 분석을 다시 실행했습니다.</p>
+
+    <div class="callout">
+      <p><strong>가장 이상했던 숫자:</strong> 데이터 분석가 공고의 11%가 Vue.js를 요구하는 것으로 나왔습니다. 원문을 확인하니 Vue.js 별칭 <code>뷰</code>가 <code>코드 리뷰</code>, <code>웹뷰</code>, <code>어트리뷰션</code> 안의 글자까지 잡고 있었습니다.</p>
+    </div>
+
+    <div class="checks">
+      <div class="check">
+        <h4>Vue.js 오탐 수정</h4>
+        <div class="big">192건<span class="arrow">→</span>26건</div>
+        <p>수정 전 매칭의 86%는 본문에 'vue'라는 글자가 없었습니다. 프론트엔드의 Vue.js는 57% → 14%가 됐습니다.</p>
+      </div>
+      <div class="check">
+        <h4>집계되지 않던 ETL</h4>
+        <div class="big">0건<span class="arrow">→</span>61건</div>
+        <p>정규식 별칭이 소문자만 인식해서 대문자 <code>ETL</code>이 한 건도 잡히지 않았습니다. 데이터 엔지니어의 ETL 요구는 0% → 42%입니다.</p>
+      </div>
+      <div class="check">
+        <h4>직무 분류 누락</h4>
+        <div class="big">24%<span class="arrow">→</span>6% <small>(50건 표본)</small></div>
+        <p>제외된 공고 중 분석 대상이었어야 하는 비율을 점검하고 <code>프론트개발자</code>, <code>Platform Engineer</code> 같은 표기를 규칙에 추가했습니다. 풀스택 86건은 따로 분리했습니다.</p>
+      </div>
+      <div class="check">
+        <h4>기술 추출 점검</h4>
+        <div class="big">약 300문장 <small>확인</small></div>
+        <p>등장이 많은 기술 20개와 일반 단어와 겹칠 수 있는 15개의 매칭 문장을 확인했고 오탐은 없었습니다. 숙련 요구로 보기 어려운 문맥 3건은 한계로 남겼습니다.</p>
+      </div>
+    </div>
+
+    <ul class="tight">
+      <li>비율에는 신뢰구간을, 비교에는 McNemar·Kruskal-Wallis 검정을 붙였습니다. 경력별 기술 수 차이(6.4개 → 7.2개)는 p = 0.055로 5% 기준에서 유의하지 않았습니다.</li>
+      <li>같은 데이터로 분석을 두 번 실행해, 새 가상환경에서 다시 실행해도 결과 파일이 모두 같은 것을 확인했습니다.</li>
+      <li>이력에서 원본 데이터를 제거하고 수집 방식, 이용약관, robots.txt 확인 내용을 있는 그대로 문서에 기록했습니다.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="try">
+  <div class="wrap">
+    <h2><span class="num">6</span>내 기술로 직접 확인해 보세요</h2>
+    <p>내가 쓸 수 있는 기술을 고르면 직무별 매칭 점수와, 하나 더 배우면 점수가 가장 많이 오르는 기술을 보여 줍니다. 예측 모델이 아니라 이 분석의 등장률을 그대로 사용합니다.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://job-posting-tech-analysis.streamlit.app/">웹 앱 열기</a>
+    </div>
+  </div>
+</section>
+
+<section id="limits">
+  <div class="wrap">
+    <h2><span class="num">7</span>한계</h2>
+    <ul class="tight">
+      <li>원티드 단일 플랫폼의 공고이며 직무별 공고 수가 71~227건으로 달라, 표본이 작은 직무는 불확실성이 큽니다.</li>
+      <li>직무는 공고 제목으로 분류했습니다. 제목에 직무 키워드가 없는 공고는 일부 빠졌을 수 있고, 풀스택 공고는 분석에서 제외했습니다.</li>
+      <li>기술이 공고에 나왔는지만 센 결과라서 필수·우대 구분이나 요구 숙련도는 알 수 없습니다.</li>
+      <li>여러 검정을 했지만 다중 비교 보정은 하지 않았으므로 p값은 참고용입니다.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>2026-09-17에 수집한 원티드 채용공고를 분석했습니다. 원본 데이터는 공개하지 않고 집계 결과만 공개합니다. 수집 방식과 이용약관·robots.txt 확인 내용은 <a href="https://github.com/Kangmunju/job-posting-tech-analysis/blob/main/reports/DATA_ACCESS.md">데이터 접근 및 수집 기록</a>에 정리했습니다.</p>
+    <p>이 페이지의 수치는 분석을 다시 실행해 결과가 바뀌면 함께 갱신해야 합니다. 기준은 저장소의 <code>outputs/logs/</code> 입니다.</p>
+  </div>
+</footer>
+
+</body>
+</html>
