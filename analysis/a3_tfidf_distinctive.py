@@ -1,8 +1,95 @@
 # IDF 계산에 필요한 log 계산을 위해 import함
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 import _common as C
+
+
+# =====================================================================
+# 0. 공통 함수
+# =====================================================================
+
+
+def collect_top_skills(table, top_n):
+    """
+    직무별로 값이 큰 상위 top_n개 기술을 모아 중복 없이 반환한다.
+    """
+
+    skills = []
+
+    for role in C.ROLE_ORDER:
+        # .index를 사용해 현재 직무의 상위 기술 이름만 가져옴
+        top_skills = table.loc[role].sort_values(ascending=False).head(top_n).index
+
+        for skill in top_skills:
+            if skill not in skills:
+                skills.append(skill)
+
+    return skills
+
+
+def save_heatmap(data, title, bar_label, file_name, cmap, vmin=None, vmax=None):
+    """
+    직무 × 기술 표를 히트맵으로 그려 outputs/figures에 저장한다.
+    """
+
+    fig, ax = plt.subplots(
+        figsize=(14, 6),
+    )
+
+    image = ax.imshow(
+        data.values,
+        aspect="auto",
+        cmap=cmap,
+        vmin=vmin,
+        vmax=vmax,
+    )
+
+    ax.set_xticks(range(len(data.columns)))
+
+    ax.set_xticklabels(
+        data.columns,
+        rotation=45,
+        ha="right",
+    )
+
+    ax.set_yticks(range(len(C.ROLE_ORDER)))
+
+    role_labels = []
+
+    for role in C.ROLE_ORDER:
+        role_labels.append(C.ROLE_KO[role])
+
+    ax.set_yticklabels(role_labels)
+
+    ax.set_title(title)
+
+    ax.set_xlabel("기술")
+    ax.set_ylabel("직무")
+
+    fig.colorbar(
+        image,
+        ax=ax,
+        label=bar_label,
+    )
+
+    plt.tight_layout()
+
+    figure_dir = C.ROOT / "outputs" / "figures"
+
+    figure_dir.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    plt.savefig(
+        figure_dir / file_name,
+        dpi=150,
+        bbox_inches="tight",
+    )
+
+    plt.close()
 
 
 # =====================================================================
@@ -102,102 +189,88 @@ def main():
     # =================================================================
 
     # 각 직무의 상위 변별 기술을 모아 히트맵에 사용할 기술 목록 생성
-    heatmap_skills = []
+    heatmap_skills = collect_top_skills(tfidf, 5)
+
+    # 직무 × 변별 기술 TF-IDF 값을 히트맵으로 저장
+    save_heatmap(
+        tfidf[heatmap_skills],
+        "직무별 변별 기술 TF-IDF",
+        "TF-IDF",
+        "pc_a3_tfidf_heatmap.png",
+        "YlGn",
+    )
+
+    # =================================================================
+    # 8. 직무 고유 기술 : 해당 직무 등장률 - 다른 직무 등장률 (%p)
+    # =================================================================
+
+    # TF-IDF는 문서 단위가 공고가 아니라 직무 5개라서 IDF가 가질 수 있는 값이 5가지뿐임
+    # 그래서 결과가 등장률 순위를 거의 그대로 따라가고, 모든 직무에서 흔한 Python이 상위에 남음
+    # 같은 기술이 다른 직무 공고에서는 얼마나 덜 등장하는지를 직접 빼서 직무 고유 기술을 확인함
+    gap_rows = {}
 
     for role in C.ROLE_ORDER:
-        # .index를 사용해 현재 직무의 TF-IDF 상위 5개 기술 이름만 가져옴
-        top_skills = tfidf.loc[role].sort_values(ascending=False).head(5).index
+        # 해당 직무가 아닌 모든 공고에서 기술별 등장 비율
+        others = mat[mat["role"] != role][skill_cols].mean()
 
-        for skill in top_skills:
-            if skill not in heatmap_skills:
-                heatmap_skills.append(skill)
+        gap_rows[role] = (tf.loc[role] - others) * 100
 
-    # 직무 × 변별 기술 TF-IDF 값
-    heatmap_data = tfidf[heatmap_skills]
+    # 직무 × 스킬 등장률 차이(%p)
+    gap = pd.DataFrame(gap_rows).T.reindex(C.ROLE_ORDER)
 
-    fig, ax = plt.subplots(
-        figsize=(14, 6),
+    gap.T.round(1).to_csv(
+        model_dir / "distinctive_gap_by_role.csv",
+        encoding="utf-8",
     )
 
-    image = ax.imshow(
-        heatmap_data.values,
-        aspect="auto",
-        cmap="YlGn",
-    )
+    C.rule("a3 — 직무 고유 기술 TOP (해당 직무 등장률 − 다른 직무 등장률, %p)")
 
-    ax.set_xticks(range(len(heatmap_skills)))
+    for role in C.ROLE_ORDER:
+        top = gap.loc[role].sort_values(ascending=False).head(8)
 
-    ax.set_xticklabels(
-        heatmap_skills,
-        rotation=45,
-        ha="right",
-    )
+        parts = []
 
-    ax.set_yticks(range(len(C.ROLE_ORDER)))
+        for skill, value in top.items():
+            in_role = tf.loc[role, skill] * 100
+            parts.append(
+                f"{skill}(+{value:.0f}%p, 해당 {in_role:.0f}% vs 그 외 {in_role - value:.0f}%)"
+            )
 
-    ax.set_yticklabels([C.ROLE_KO[role] for role in C.ROLE_ORDER])
+        print(f"\n[{C.ROLE_KO[role]}]")
 
-    ax.set_title("직무별 변별 기술 TF-IDF")
-
-    ax.set_xlabel("기술")
-    ax.set_ylabel("직무")
-
-    fig.colorbar(
-        image,
-        ax=ax,
-        label="TF-IDF",
-    )
-
-    plt.tight_layout()
+        print(" " + "; ".join(parts))
 
     # =================================================================
-    # 8. 히트맵 저장
+    # 9. %p 차이 히트맵
     # =================================================================
 
-    figure_dir = C.ROOT / "outputs" / "figures"
+    gap_skills = collect_top_skills(gap, 5)
 
-    figure_dir.mkdir(
-        parents=True,
-        exist_ok=True,
+    gap_data = gap[gap_skills]
+
+    # 0을 기준으로 양수(해당 직무에서 더 많이 요구)와 음수(덜 요구)가 대칭이 되도록 색 범위를 맞춤
+    limit = float(np.abs(gap_data.values).max())
+
+    save_heatmap(
+        gap_data,
+        "직무별 고유 기술 (해당 직무 등장률 - 다른 직무 등장률, %p)",
+        "등장률 차이 (%p)",
+        "pc_a3_gap_heatmap.png",
+        "RdBu_r",
+        vmin=-limit,
+        vmax=limit,
     )
-
-    plt.savefig(
-        figure_dir / "pc_a3_tfidf_heatmap.png",
-        dpi=150,
-        bbox_inches="tight",
-    )
-
-    plt.close()
-
 
 # =====================================================================
-# 9. 실행
+# 10. 실행
 # =====================================================================
 
 if __name__ == "__main__":
     main()
 
 
-# ========================================================================
-# a3 — 직무를 '변별'하는 기술 TOP (TF-IDF: 그 직무에서 유독 두드러짐)
-# ========================================================================
-
-# [데이터 분석가]
-#  SQL(TFIDF 0.982, 등장 83%); Tableau(TFIDF 0.887, 등장 42%); Python(TFIDF 0.716, 등장 61%); A/B Test(TFIDF 0.515, 등장 37%); BigQuery(TFIDF 0.405, 등장 24%); Looker(TFIDF 0.266, 등장 13%); Power BI(TFIDF 0.266, 등장 13%); R(TFIDF 0.236, 등장 11%)
-
-# [데이터 엔지니어]
-#  Python(TFIDF 0.818, 등장 69%); Kafka(TFIDF 0.757, 등장 45%); SQL(TFIDF 0.742, 등장 63%); Airflow(TFIDF 0.718, 등장 51%); Spark(TFIDF 0.673, 등장 48%); AWS(TFIDF 0.574, 등장 57%); dbt(TFIDF 0.522, 등장 31%); Flink(TFIDF 0.424, 등장 20%)
-
-# [데이터 사이언티스트]
-#  Python(TFIDF 0.872, 등장 74%); Deep Learning(TFIDF 0.671, 등장 32%); PyTorch(TFIDF 0.619, 등장 30%); LLM(TFIDF 0.557, 등장 56%); Machine Learning(TFIDF 0.541, 등장 39%); RAG(TFIDF 0.392, 등장 28%); Computer Vision(TFIDF 0.327, 등장 16%); NLP(TFIDF 0.275, 등장 13%)
-
-# [백엔드]
-#  AWS(TFIDF 0.582, 등장 58%); Kubernetes(TFIDF 0.569, 등장 48%); CI/CD(TFIDF 0.536, 등장 45%); Python(TFIDF 0.474, 등장 40%); Docker(TFIDF 0.449, 등장 38%); React(TFIDF 0.426, 등장 30%); Terraform(TFIDF 0.425, 등장 25%); Java(TFIDF 0.425, 등장 25%)
-
-# [프론트엔드]
-#  React(TFIDF 1.340, 등장 95%); TypeScript(TFIDF 1.171, 등장 83%); Next.js(TFIDF 0.914, 등장 54%); JavaScript(TFIDF 0.655, 등장 39%); Vue.js(TFIDF 0.587, 등장 59%); CSS(TFIDF 0.564, 등장 33%); HTML(TFIDF 0.420, 등장 20%); React Native(TFIDF 0.406, 등장 24%)
-
-
+# =====================================================================
+# [구현 핵심]
 # =====================================================================
 
 # 해당 직무에서 많이 등장하면서 다른 직무에서는 상대적으로 덜 등장하는 기술을 찾도록 구현함
@@ -215,8 +288,20 @@ if __name__ == "__main__":
 
 # TF × IDF로 최종 TF-IDF를 계산
 # 등장률이 높더라도 여러 직무에서 흔한 기술은 상대적으로 가중치가 낮아지는 것을 확인함
-# 특정 직무에서 집중적으로 등장하는 기술은 변벽력이 높게 평가되는 것을 확인함
+# 특정 직무에서 집중적으로 등장하는 기술은 변별력이 높게 평가되는 것을 확인함
 
 # 최종 점검 시 a2와 a3의 Machine Learning 등장률이 38%와 39%로 서로 다르게 출력되는 것을 확인함
 # 반올림 시점의 차이가 원인으로 판명되어 a3 출력 부분에 round()를 추가해 통일하였음
 # TF-IDF 계산값은 변경하지 않고 출력 형식만 수정함
+
+
+# =====================================================================
+# [수정 사항]
+# =====================================================================
+
+# TF-IDF의 문서 단위가 공고가 아니라 직무 5개라서 IDF가 가질 수 있는 값이 5가지뿐임
+# 그래서 결과가 등장률 순위를 거의 그대로 따라가고 모든 직무에서 흔한 Python이 상위에 남는 한계가 있었음
+# 해당 직무 등장률 - 다른 직무 공고 전체의 등장률(%p)을 직무 고유 기술로 추가함
+# 기존 TF-IDF 계산과 산출물은 비교를 위해 그대로 유지함
+# 새 산출물은 models/distinctive_gap_by_role.csv, outputs/figures/pc_a3_gap_heatmap.png임
+# 히트맵 저장과 상위 기술 모으기는 함수로 분리해 TF-IDF와 %p 차이가 같은 코드를 사용함
